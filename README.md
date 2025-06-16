@@ -257,4 +257,4 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 - **Homepage**: [https://github.com/openwebf/webf-cupertino-ui](https://github.com/openwebf/webf-cupertino-ui)
 - **Issue tracker**: [https://github.com/openwebf/webf-cupertino-ui/issues](https://github.com/openwebf/webf-cupertino-ui/issues)
-- **WebF project**: [https://github.com/openwebf/webf](https://github.com/openwebf/webf)
+- **WebF Enterprise**: [https://openwebf.com](https://openwebf.com)
