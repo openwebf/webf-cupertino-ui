@@ -3,6 +3,9 @@
 [![pub package](https://img.shields.io/pub/v/webf_cupertino_ui.svg)](https://pub.dev/packages/webf_cupertino_ui)
 [![CI](https://github.com/openwebf/webf-cupertino-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/openwebf/webf-cupertino-ui/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![WebF Enterprise](https://img.shields.io/badge/WebF-Enterprise%20Only-orange.svg)](https://openwebf.com)
+
+> **This package is exclusively for WebF Enterprise subscribers.** Visit [openwebf.com](https://openwebf.com) for subscription information.
 
 A Flutter package that provides Cupertino-style UI components for WebF applications. This package
 wraps Flutter's native Cupertino widgets as HTML custom elements, designed to be used with modern
@@ -50,14 +53,11 @@ JavaScript frameworks like Vue.js and React for building iOS-style web applicati
 ### Prerequisites
 
 - Flutter SDK
-- WebF (version 0.22.0 or higher)
+- WebF Enterprise subscription (version 0.22.0 or higher)
 
-> **Important Note**: This package currently depends on the WebF Enterprise edition from a private Cloudsmith repository. If you need to use the open-source version of WebF, you'll need to override the dependency in your `pubspec.yaml`:
+> **⚠️ WebF Enterprise Required**: This package requires a WebF Enterprise subscription. It depends on the WebF Enterprise edition from a private Cloudsmith repository and is only available to WebF Enterprise subscribers. 
 > 
-> ```yaml
-> dependency_overrides:
->   webf: ^0.22.0  # Use the open-source version from pub.dev
-> ```
+> To get access to WebF Enterprise, please visit [openwebf.com](https://openwebf.com) for more information about enterprise subscriptions and pricing.
 
 ### Installation
 
