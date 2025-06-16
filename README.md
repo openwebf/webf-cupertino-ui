@@ -9,7 +9,7 @@
 
 ## 🎨 Live Demo
 
-### **Vue.js Gallery: [vue-cupertino-gallery.vercel.app](https://vue-cupertino-gallery.vercel.app/)**
+### **[vue-cupertino-gallery.vercel.app](https://vue-cupertino-gallery.vercel.app/)**
 
 To view the live demo:
 1. Install this package in your WebF app (see installation below)
