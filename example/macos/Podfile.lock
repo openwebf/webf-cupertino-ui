@@ -1,0 +1,22 @@
+PODS:
+  - FlutterMacOS (1.0.0)
+  - webf (0.22.0):
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - webf (from `Flutter/ephemeral/.symlinks/plugins/webf/macos`)
+
+EXTERNAL SOURCES:
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  webf:
+    :path: Flutter/ephemeral/.symlinks/plugins/webf/macos
+
+SPEC CHECKSUMS:
+  FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
+  webf: 44a7dad322b541fe3a0896448d7ce631b54da0f6
+
+PODFILE CHECKSUM: 5633cb43239e9aa0858edeb72fb31829c266909d
+
+COCOAPODS: 1.16.2
