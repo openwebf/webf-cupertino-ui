@@ -51,6 +51,13 @@ components in your WebF web applications.
 - Flutter SDK
 - WebF (version 0.22.0 or higher)
 
+> **Important Note**: This package currently depends on the WebF Enterprise edition from a private Cloudsmith repository. If you need to use the open-source version of WebF, you'll need to override the dependency in your `pubspec.yaml`:
+> 
+> ```yaml
+> dependency_overrides:
+>   webf: ^0.22.0  # Use the open-source version from pub.dev
+> ```
+
 ### Installation
 
 Add `webf_cupertino_ui` to your `pubspec.yaml`:
