@@ -7,6 +7,23 @@
 
 > **This package is exclusively for WebF Enterprise subscribers.** Visit [openwebf.com](https://openwebf.com) for subscription information.
 
+## 🎨 Live Demo
+
+### **Vue.js Gallery: [vue-cupertino-gallery.vercel.app](https://vue-cupertino-gallery.vercel.app/)**
+
+To view the live demo:
+1. Install this package in your WebF app (see installation below)
+2. Load the gallery URL through WebF:
+   ```dart
+   WebF.fromControllerName(
+     controllerName: 'cupertino-gallery',
+     bundle: WebFBundle.fromUrl('https://vue-cupertino-gallery.vercel.app/'),
+   )
+   ```
+3. Or run the example app which includes the gallery (see example section)
+
+---
+
 A Flutter package that provides Cupertino-style UI components for WebF applications. This package
 wraps Flutter's native Cupertino widgets as HTML custom elements, designed to be used with modern
 JavaScript frameworks like Vue.js and React for building iOS-style web applications.
@@ -183,7 +200,17 @@ button.disabled = false;
 
 ## Example
 
-Check out the [example](example/) directory for a complete example app demonstrating all components.
+Check out the [example](example/) directory for a complete example app that includes:
+- Local HTML examples of all components
+- Direct access to the Vue.js Gallery hosted on Vercel
+
+To run the example:
+```bash
+cd example
+flutter run
+```
+
+The example app includes a "Cupertino Gallery (Vue.js)" option that loads the live gallery directly through WebF.
 
 ## Contributing
 
