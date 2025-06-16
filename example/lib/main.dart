@@ -181,7 +181,7 @@ class CupertinoGalleryPage extends StatefulWidget {
 }
 
 class CupertinoGalleryPageState extends State<CupertinoGalleryPage> {
-  // TODO: Replace with your actual Vercel deployment URL
+  // Vue Cupertino Gallery hosted on Vercel
   static const String vercelUrl = 'https://vue-cupertino-gallery.vercel.app/';
 
   @override

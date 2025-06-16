@@ -148,8 +148,8 @@ React examples will be available soon. The components work similarly with React'
 ### 3. Complete Vue.js Gallery Example
 
 For a comprehensive example of all components, check out the Vue Cupertino Gallery:
-- **Source Code**: [vue-cupertino-gallery](https://github.com/openwebf/vue-cupertino-gallery)
-- **Live Demo**: Available after deployment
+- **Live Demo**: [vue-cupertino-gallery.vercel.app](https://vue-cupertino-gallery.vercel.app/)
+- **Source Code**: [github.com/openwebf/vue-cupertino-gallery](https://github.com/openwebf/vue-cupertino-gallery)
 
 The gallery demonstrates:
 - All available Cupertino components
