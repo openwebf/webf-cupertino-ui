@@ -5,16 +5,17 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A Flutter package that provides Cupertino-style UI components for WebF applications. This package
-wraps Flutter's native Cupertino widgets as HTML custom elements, allowing you to use iOS-style UI
-components in your WebF web applications.
+wraps Flutter's native Cupertino widgets as HTML custom elements, designed to be used with modern
+JavaScript frameworks like Vue.js and React for building iOS-style web applications.
 
 ## Features
 
 - **Native Cupertino Widgets**: Access all the beautiful iOS-style widgets from Flutter's Cupertino
   library
-- **Custom HTML Elements**: Use Cupertino widgets as HTML custom elements in your WebF applications
+- **Framework Integration**: Designed for Vue.js and React applications with full reactive support
+- **Custom HTML Elements**: Cupertino widgets exposed as HTML custom elements for framework usage
 - **Full WebF Integration**: Seamless integration with WebF's rendering engine and event system
-- **TypeScript Support**: TypeScript definitions included for better IDE support
+- **TypeScript Support**: Complete TypeScript definitions for Vue and React development
 
 ### Available Components
 
@@ -90,73 +91,91 @@ void main() {
 }
 ```
 
-### 2. Use Cupertino components in your HTML
+### 2. Use with Vue.js or React
 
-Once installed, you can use the Cupertino components as HTML custom elements:
+WebF Cupertino UI is designed to work seamlessly with modern JavaScript frameworks like Vue.js and React. The components are exposed as HTML custom elements that can be used within your framework components.
 
-```html
-<!-- Button example -->
-<flutter-cupertino-button variant="filled" size="large">
-  Click Me
-</flutter-cupertino-button>
+#### Vue.js Example
 
-<!-- Switch example -->
-<flutter-cupertino-switch id="mySwitch" value="true"></flutter-cupertino-switch>
+```vue
+<template>
+  <div class="form-container">
+    <flutter-cupertino-input
+      v-model="username"
+      placeholder="Enter username"
+      :clearButtonMode="clearMode"
+    />
+    
+    <flutter-cupertino-switch
+      v-model="isEnabled"
+      @change="handleSwitchChange"
+    />
+    
+    <flutter-cupertino-button
+      variant="filled"
+      @click="handleSubmit"
+    >
+      Submit
+    </flutter-cupertino-button>
+  </div>
+</template>
 
-<!-- Input example -->
-<flutter-cupertino-input
-  placeholder="Enter your name"
-  clearButtonMode="while-editing">
-</flutter-cupertino-input>
-
-<!-- Date Picker example -->
-<flutter-cupertino-date-picker
-  mode="date"
-  initialDateTime="2024-01-01">
-</flutter-cupertino-date-picker>
-```
-
-### 3. Handle events
-
-All components dispatch standard DOM events:
-
-```javascript
-// JavaScript
-const button = document.querySelector('flutter-cupertino-button');
-button.addEventListener('click', (e) => {
-  console.log('Button clicked!');
-});
-
-const switchElement = document.querySelector('flutter-cupertino-switch');
-switchElement.addEventListener('change', (e) => {
-  console.log('Switch value:', e.detail.value);
-});
-```
-
-### 4. Style with CSS
-
-Components respect CSS styling where applicable:
-
-```css
-flutter-cupertino-button {
-  width: 200px;
-  padding: 16px;
-  background-color: #007AFF;
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      isEnabled: false,
+      clearMode: 'while-editing'
+    }
+  },
+  methods: {
+    handleSwitchChange(event) {
+      console.log('Switch changed:', event.detail.value);
+    },
+    handleSubmit() {
+      console.log('Form submitted');
+    }
+  }
 }
-
-flutter-cupertino-input {
-  width: 100%;
-  min-height: 44px;
-}
+</script>
 ```
+
+#### React Example (Coming Soon)
+
+React examples will be available soon. The components work similarly with React's event system and state management.
+
+### 3. Complete Vue.js Gallery Example
+
+For a comprehensive example of all components, check out the Vue Cupertino Gallery:
+- **Source Code**: [vue-cupertino-gallery](https://github.com/openwebf/vue-cupertino-gallery)
+- **Live Demo**: Available after deployment
+
+The gallery demonstrates:
+- All available Cupertino components
+- Proper Vue.js integration patterns
+- Event handling and state management
+- Component composition and styling
 
 ## TypeScript Support
 
-TypeScript definitions are included for all components. When using TypeScript, you'll get full type
-checking and IntelliSense support:
+TypeScript definitions are included for all components. When using TypeScript with Vue or React, you'll get full type checking and IntelliSense support:
 
 ```typescript
-// TypeScript
+// Vue 3 with TypeScript
+import { ref } from 'vue';
+
+const buttonRef = ref<FlutterCupertinoButton>();
+
+// Access typed properties
+if (buttonRef.value) {
+  buttonRef.value.variant = 'tinted';
+  buttonRef.value.disabled = false;
+}
+```
+
+```typescript
+// Direct DOM access with TypeScript
 const button = document.querySelector<FlutterCupertinoButton>('flutter-cupertino-button');
 button.variant = 'tinted';
 button.disabled = false;
