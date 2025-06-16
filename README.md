@@ -7,20 +7,43 @@
 
 > **This package is exclusively for WebF Enterprise subscribers.** Visit [openwebf.com](https://openwebf.com) for subscription information.
 
-## 🎨 Live Demo
+## 🎨 Vue.js Gallery Example
 
-### **[vue-cupertino-gallery.vercel.app](https://vue-cupertino-gallery.vercel.app/)**
+A comprehensive Vue.js application showcasing all Cupertino components is available at:
+**https://vue-cupertino-gallery.vercel.app/**
 
-To view the live demo:
-1. Install this package in your WebF app (see installation below)
-2. Load the gallery URL through WebF:
-   ```dart
-   WebF.fromControllerName(
-     controllerName: 'cupertino-gallery',
-     bundle: WebFBundle.fromUrl('https://vue-cupertino-gallery.vercel.app/'),
-   )
-   ```
-3. Or run the example app which includes the gallery (see example section)
+**Note:** This is not a traditional web demo. To view the gallery, you must:
+1. Have a WebF Enterprise subscription
+2. Install this package in your Flutter app
+3. Load the gallery through WebF (see quick start below)
+
+### Quick Start - View the Gallery
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:webf/webf.dart';
+import 'package:webf_cupertino_ui/webf_cupertino_ui.dart';
+
+void main() {
+  // Initialize WebF Controller Manager
+  WebFControllerManager.instance.initialize(WebFControllerManagerConfig(
+    maxAliveInstances: 2,
+    maxAttachedInstances: 1,
+  ));
+  
+  // Install Cupertino UI components
+  installWebFCupertinoUI();
+  
+  runApp(MaterialApp(
+    home: Scaffold(
+      body: WebF.fromControllerName(
+        controllerName: 'gallery',
+        bundle: WebFBundle.fromUrl('https://vue-cupertino-gallery.vercel.app/'),
+      ),
+    ),
+  ));
+}
+```
 
 ---
 
@@ -72,8 +95,8 @@ JavaScript frameworks like Vue.js and React for building iOS-style web applicati
 - Flutter SDK
 - WebF Enterprise subscription (version 0.22.0 or higher)
 
-> **⚠️ WebF Enterprise Required**: This package requires a WebF Enterprise subscription. It depends on the WebF Enterprise edition from a private Cloudsmith repository and is only available to WebF Enterprise subscribers. 
-> 
+> **⚠️ WebF Enterprise Required**: This package requires a WebF Enterprise subscription. It depends on the WebF Enterprise edition from a private Cloudsmith repository and is only available to WebF Enterprise subscribers.
+>
 > To get access to WebF Enterprise, please visit [openwebf.com](https://openwebf.com) for more information about enterprise subscriptions and pricing.
 
 ### Installation
@@ -98,9 +121,16 @@ flutter pub get
 In your main Dart file, import and install the Cupertino UI components:
 
 ```dart
+import 'package:webf/webf.dart';
 import 'package:webf_cupertino_ui/webf_cupertino_ui.dart';
 
 void main() {
+  // Initialize WebF Controller Manager
+  WebFControllerManager.instance.initialize(WebFControllerManagerConfig(
+    maxAliveInstances: 2,
+    maxAttachedInstances: 1,
+  ));
+
   // Install all Cupertino UI components
   installWebFCupertinoUI();
 
@@ -122,12 +152,12 @@ WebF Cupertino UI is designed to work seamlessly with modern JavaScript framewor
       placeholder="Enter username"
       :clearButtonMode="clearMode"
     />
-    
+
     <flutter-cupertino-switch
       v-model="isEnabled"
       @change="handleSwitchChange"
     />
-    
+
     <flutter-cupertino-button
       variant="filled"
       @click="handleSubmit"
@@ -165,7 +195,7 @@ React examples will be available soon. The components work similarly with React'
 ### 3. Complete Vue.js Gallery Example
 
 For a comprehensive example of all components, check out the Vue Cupertino Gallery:
-- **Live Demo**: [vue-cupertino-gallery.vercel.app](https://vue-cupertino-gallery.vercel.app/)
+- **Gallery URL**: [vue-cupertino-gallery.vercel.app](https://vue-cupertino-gallery.vercel.app/) (requires WebF to view)
 - **Source Code**: [github.com/openwebf/vue-cupertino-gallery](https://github.com/openwebf/vue-cupertino-gallery)
 
 The gallery demonstrates:
@@ -210,7 +240,7 @@ cd example
 flutter run
 ```
 
-The example app includes a "Cupertino Gallery (Vue.js)" option that loads the live gallery directly through WebF.
+The example app includes a "Cupertino Gallery (Vue.js)" option that loads the gallery directly through WebF.
 
 ## Contributing
 
