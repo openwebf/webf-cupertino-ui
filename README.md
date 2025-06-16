@@ -7,6 +7,10 @@
 
 > **This package is exclusively for WebF Enterprise subscribers.** Visit [openwebf.com](https://openwebf.com) for subscription information.
 
+## What is WebF?
+
+WebF enables you to build Flutter apps using web technologies (HTML, CSS, JavaScript) with frameworks like Vue.js and React. This is NOT for building web applications - it's for building native Flutter applications using familiar web development tools.
+
 ## 🎨 Vue.js Gallery Example
 
 A comprehensive Vue.js application showcasing all Cupertino components is available at:
@@ -49,16 +53,15 @@ void main() {
 
 A Flutter package that provides Cupertino-style UI components for WebF applications. This package
 wraps Flutter's native Cupertino widgets as HTML custom elements, designed to be used with modern
-JavaScript frameworks like Vue.js and React for building iOS-style web applications.
+JavaScript frameworks like Vue.js and React for building Flutter apps using web technologies.
 
 ## Features
 
-- **Native Cupertino Widgets**: Access all the beautiful iOS-style widgets from Flutter's Cupertino
-  library
-- **Framework Integration**: Designed for Vue.js and React applications with full reactive support
-- **Custom HTML Elements**: Cupertino widgets exposed as HTML custom elements for framework usage
-- **Full WebF Integration**: Seamless integration with WebF's rendering engine and event system
-- **TypeScript Support**: Complete TypeScript definitions for Vue and React development
+- **Native Flutter Widgets**: Use Flutter's native Cupertino widgets through web technologies
+- **Web Framework Development**: Build your Flutter app UI with Vue.js or React
+- **Custom HTML Elements**: Cupertino widgets exposed as HTML custom elements
+- **Full Native Performance**: Renders as native Flutter widgets, not web views
+- **TypeScript Support**: Complete type definitions for better development experience
 
 ### Available Components
 
