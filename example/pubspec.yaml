@@ -9,11 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_icons: ^1.0.6
   # For development: use local webf package
   # For publishing: uncomment below and comment out the path dependency above
   webf:
     hosted: https://dart.cloudsmith.io/openwebf/webf-enterprise/
-    version: ^0.22.0
+    version: ^0.21.5+4
   webf_cupertino_ui:
     path: ../
 
@@ -28,7 +29,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  
+
   # Include the example HTML files
   assets:
     - assets/

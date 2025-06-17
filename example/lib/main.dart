@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:webf/webf.dart';
 import 'package:webf_cupertino_ui/webf_cupertino_ui.dart';
+
+final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
 
 void main() {
   // Initialize WebF Controller Manager
@@ -18,156 +21,115 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  Route<dynamic>? handleOnGenerateRoute(RouteSettings settings) {
+    if (settings.name == '/') {
+      // Main page uses WebF widget
+      return CupertinoPageRoute(
+        settings: settings,
+        builder: (context) => CupertinoGalleryPage(),
+      );
+    } else {
+      // Sub-pages use WebFRouterView
+      return CupertinoPageRoute(
+        settings: settings,
+        builder: (context) {
+          return WebFRouterView.fromControllerName(
+              controllerName: 'cupertino-gallery',
+              path: settings.name!,
+              builder: (context, controller) {
+                return CupertinoGallerySubView(controller: controller, path: settings.name!);
+              },
+              loadingWidget: buildSplashScreen());
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'WebF Cupertino UI Example',
+      title: 'WebF Cupertino UI Gallery',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         brightness: Brightness.light,
       ),
-      home: HomePage(),
+      navigatorObservers: [routeObserver],
+      onGenerateRoute: handleOnGenerateRoute,
+      initialRoute: '/',
       debugShowCheckedModeBanner: false,
     );
   }
-}
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('WebF Cupertino UI Examples'),
+  static Widget buildSplashScreen() {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            CupertinoColors.systemBackground,
+            CupertinoColors.systemGrey6,
+          ],
+        ),
       ),
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: [
-          _buildExampleButton(
-            context,
-            'Components Gallery',
-            'View all Cupertino components',
-            ComponentsGalleryPage(),
-          ),
-          SizedBox(height: 12),
-          _buildExampleButton(
-            context,
-            'Form Example',
-            'Cupertino form components demo',
-            FormExamplePage(),
-          ),
-          SizedBox(height: 12),
-          _buildExampleButton(
-            context,
-            'Dialog Examples',
-            'Alerts, action sheets, and popups',
-            DialogExamplesPage(),
-          ),
-          SizedBox(height: 12),
-          _buildExampleButton(
-            context,
-            'Navigation Example',
-            'Tab bars and navigation',
-            NavigationExamplePage(),
-          ),
-          SizedBox(height: 12),
-          _buildExampleButton(
-            context,
-            'Cupertino Gallery (Vue.js)',
-            'Full-featured Vue.js example app',
-            CupertinoGalleryPage(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildExampleButton(
-    BuildContext context,
-    String title,
-    String subtitle,
-    Widget page,
-  ) {
-    return Card(
-      child: ListTile(
-        title: Text(title),
-        subtitle: Text(subtitle),
-        trailing: Icon(Icons.arrow_forward_ios),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => page),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class ComponentsGalleryPage extends StatelessWidget {
-  const ComponentsGalleryPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Components Gallery'),
-      ),
-      body: WebF.fromControllerName(
-        controllerName: 'components-gallery',
-        bundle: WebFBundle.fromUrl('assets:///assets/components_gallery.html'),
-      ),
-    );
-  }
-}
-
-class FormExamplePage extends StatelessWidget {
-  const FormExamplePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Form Example'),
-      ),
-      body: WebF.fromControllerName(
-        controllerName: 'form-example',
-        bundle: WebFBundle.fromUrl('assets:///assets/form_example.html'),
-      ),
-    );
-  }
-}
-
-class DialogExamplesPage extends StatelessWidget {
-  const DialogExamplesPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Dialog Examples'),
-      ),
-      body: WebF.fromControllerName(
-        controllerName: 'dialog-examples',
-        bundle: WebFBundle.fromUrl('assets:///assets/dialog_examples.html'),
-      ),
-    );
-  }
-}
-
-class NavigationExamplePage extends StatelessWidget {
-  const NavigationExamplePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Navigation Example'),
-      ),
-      body: WebF.fromControllerName(
-        controllerName: 'navigation-example',
-        bundle: WebFBundle.fromUrl('assets:///assets/navigation_example.html'),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Cupertino icon
+            Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                color: CupertinoColors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: CupertinoColors.systemGrey.withOpacity(0.2),
+                    spreadRadius: 3,
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Icon(
+                CupertinoIcons.cube_box_fill,
+                size: 60,
+                color: CupertinoColors.activeBlue,
+              ),
+            ),
+            SizedBox(height: 32),
+            Text(
+              'WebF Cupertino UI',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+                color: CupertinoColors.label,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Gallery',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w400,
+                color: CupertinoColors.secondaryLabel,
+              ),
+            ),
+            SizedBox(height: 40),
+            CupertinoActivityIndicator(
+              radius: 16,
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Loading components...',
+              style: TextStyle(
+                fontSize: 14,
+                color: CupertinoColors.tertiaryLabel,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -182,7 +144,7 @@ class CupertinoGalleryPage extends StatefulWidget {
 
 class CupertinoGalleryPageState extends State<CupertinoGalleryPage> {
   // Vue Cupertino Gallery hosted on Vercel
-  static const String vercelUrl = 'https://vue-cupertino-gallery.vercel.app/';
+  static const String vercelUrl = 'https://vue-cupertino-gallery.openwebf.com/';
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +155,37 @@ class CupertinoGalleryPageState extends State<CupertinoGalleryPage> {
       body: WebF.fromControllerName(
         controllerName: 'cupertino-gallery',
         bundle: WebFBundle.fromUrl(vercelUrl),
+        loadingWidget: MyApp.buildSplashScreen(),
+        createController: () => WebFController(
+          routeObserver: routeObserver,
+        ),
       ),
+    );
+  }
+}
+
+class CupertinoGallerySubView extends StatefulWidget {
+  const CupertinoGallerySubView({super.key, required this.path, required this.controller});
+
+  final WebFController controller;
+  final String path;
+
+  @override
+  State<StatefulWidget> createState() {
+    return CupertinoGallerySubViewState();
+  }
+}
+
+class CupertinoGallerySubViewState extends State<CupertinoGallerySubView> {
+  @override
+  Widget build(BuildContext context) {
+    WebFController controller = widget.controller;
+    RouterLinkElement? routerLinkElement = controller.view.getHybridRouterView(widget.path);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(routerLinkElement?.getAttribute('title') ?? 'Cupertino Gallery'),
+      ),
+      body: WebFRouterView(controller: controller, path: widget.path),
     );
   }
 }

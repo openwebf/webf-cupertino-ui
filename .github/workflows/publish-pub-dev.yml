@@ -1,0 +1,50 @@
+name: Publish to pub.dev
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.0'
+        channel: 'stable'
+    
+    # Configure Cloudsmith for WebF Enterprise dependency
+    - name: Configure Cloudsmith for WebF Enterprise
+      run: |
+        dart pub token add https://dart.cloudsmith.io/openwebf/webf-enterprise/ --env-var CLOUDSMITH_API_KEY
+      env:
+        CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+    
+    - name: Install dependencies
+      run: flutter pub get
+    
+    - name: Run tests
+      run: flutter test
+    
+    - name: Check formatting
+      run: dart format --set-exit-if-changed .
+    
+    - name: Analyze code
+      run: flutter analyze
+    
+    # Verify the package is ready for publishing
+    - name: Dry run
+      run: flutter pub publish --dry-run
+    
+    # Publish to pub.dev
+    - name: Publish to pub.dev
+      uses: k-paxian/dart-package-publisher@v1.6
+      with:
+        credentialJson: ${{ secrets.PUB_CREDENTIAL_JSON }}
+        flutter: true
+        skipTests: true

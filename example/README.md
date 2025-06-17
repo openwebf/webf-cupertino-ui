@@ -1,17 +1,53 @@
 # WebF Cupertino UI Example
 
-This example demonstrates how to use the WebF Cupertino UI package to create iOS-style interfaces in WebF applications.
+This example demonstrates how to use the WebF Cupertino UI package to create iOS-style interfaces in WebF applications across multiple platforms.
+
+## Platform Support
+
+This example app supports the following platforms:
+
+- ✅ **iOS** - Native iOS app with Cupertino-style components
+- ✅ **Android** - Android app with iOS-style components through WebF
+- ✅ **macOS** - Desktop app for macOS
+- ✅ **Windows** - Desktop app for Windows
+- ✅ **Linux** - Desktop app for Linux distributions
 
 ## Getting Started
+
+### Prerequisites
+
+1. Flutter SDK installed
+2. WebF Enterprise subscription
+3. Platform-specific requirements:
+   - **iOS**: Xcode and iOS Simulator/Device
+   - **Android**: Android Studio and Android Emulator/Device
+   - **macOS**: Xcode
+   - **Windows**: Visual Studio with Desktop development with C++
+   - **Linux**: Development libraries (see Flutter docs)
+
+### Running the Example
 
 1. Install dependencies:
    ```bash
    flutter pub get
    ```
 
-2. Run the example:
+2. Run on your desired platform:
    ```bash
-   flutter run
+   # iOS
+   flutter run -d ios
+   
+   # Android
+   flutter run -d android
+   
+   # macOS
+   flutter run -d macos
+   
+   # Windows
+   flutter run -d windows
+   
+   # Linux
+   flutter run -d linux
    ```
 
 ## Examples Included
@@ -78,6 +114,20 @@ Note: The Vue.js gallery source code is maintained separately at: https://github
    ```
 
 4. **Styling**: Components can be styled with CSS while maintaining their iOS appearance.
+
+## Platform-Specific Notes
+
+### iOS
+- App Transport Security is configured to allow loading from localhost and HTTP URLs during development
+- The app will request network access on first launch
+
+### Android
+- Internet permission is already configured in the manifest
+- The app supports all Android versions that Flutter supports
+
+### Desktop Platforms (Windows, Linux, macOS)
+- No special configuration required
+- The app will use the system's default network settings
 
 ## Running with Hot Reload
 

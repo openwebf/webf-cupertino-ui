@@ -1,0 +1,78 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+      
+      - name: Configure Cloudsmith
+        run: |
+          dart pub token add https://dart.cloudsmith.io/openwebf/webf-enterprise/ --env-var CLOUDSMITH_API_KEY
+        env:
+          CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+      
+      - name: Install dependencies
+        run: flutter pub get
+      
+      - name: Run tests
+        run: flutter test
+      
+      - name: Check formatting
+        run: dart format --set-exit-if-changed .
+      
+      - name: Analyze code
+        run: flutter analyze
+
+  test-example:
+    name: Test Example App
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+      
+      - name: Configure Cloudsmith
+        run: |
+          dart pub token add https://dart.cloudsmith.io/openwebf/webf-enterprise/ --env-var CLOUDSMITH_API_KEY
+        env:
+          CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+      
+      - name: Install dependencies (root)
+        run: flutter pub get
+      
+      - name: Install dependencies (example)
+        working-directory: example
+        run: flutter pub get
+      
+      - name: Run example tests
+        working-directory: example
+        run: flutter test
+      
+      - name: Check example formatting
+        working-directory: example
+        run: dart format --set-exit-if-changed .
+      
+      - name: Analyze example code
+        working-directory: example
+        run: flutter analyze
