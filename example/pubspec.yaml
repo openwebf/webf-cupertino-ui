@@ -18,9 +18,9 @@ dependencies:
   webf_cupertino_ui:
     path: ../
 
-dependency_overrides:
-  webf:
-    path: ../../webf
+#dependency_overrides:
+#  webf:
+#    path: ../../webf
 
 dev_dependencies:
   flutter_test:
