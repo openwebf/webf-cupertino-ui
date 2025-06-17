@@ -6,8 +6,8 @@ repository: https://github.com/openwebf/webf-cupertino-ui
 issue_tracker: https://github.com/openwebf/webf-cupertino-ui/issues
 
 environment:
-  sdk: ^3.6.0
-  flutter: ">=1.17.0"
+  sdk: '>=3.5.0 <4.0.0'
+  flutter: ">=3.24.0"
 
 dependencies:
   flutter:
