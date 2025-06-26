@@ -12,7 +12,6 @@ import 'input_bindings_generated.dart';
 class FlutterCupertinoInput extends FlutterCupertinoInputBindings {
   FlutterCupertinoInput(super.context);
 
-  String _val = '';
   String _placeholder = '';
   String _type = 'text';
   bool _disabled = false;
@@ -45,7 +44,7 @@ class FlutterCupertinoInput extends FlutterCupertinoInputBindings {
   }
 
   @override
-  bool? get disabled => _disabled;
+  bool get disabled => _disabled;
   @override
   set disabled(value) {
     _disabled = value != 'false';
@@ -59,7 +58,7 @@ class FlutterCupertinoInput extends FlutterCupertinoInputBindings {
   }
 
   @override
-  bool? get clearable => _clearable;
+  bool get clearable => _clearable;
   @override
   set clearable(value) {
     _clearable = value != 'false';
@@ -73,7 +72,7 @@ class FlutterCupertinoInput extends FlutterCupertinoInputBindings {
   }
 
   @override
-  bool? get readonly => _readOnly;
+  bool get readonly => _readOnly;
   @override
   set readonly(value) {
     _readOnly = value != 'false';
@@ -193,7 +192,7 @@ class FlutterCupertinoInputState extends WebFWidgetElementState {
     final hasHeight = renderStyle.height.value != null;
     final hasBorderRadius = renderStyle.borderRadius != null;
     final hasPadding = renderStyle.padding != EdgeInsets.zero;
-    final textAlign = renderStyle.textAlign ?? TextAlign.left;
+    final textAlign = renderStyle.textAlign;
 
     // Build prefix and suffix
     final prefixWidget = _buildSlotWidget('prefix');
@@ -205,13 +204,13 @@ class FlutterCupertinoInputState extends WebFWidgetElementState {
         controller: _controller,
         focusNode: _focusNode,
         placeholder: widgetElement.placeholder,
-        enabled: !widgetElement.disabled!,
-        readOnly: widgetElement.readonly!,
-        autofocus: widgetElement.autofocus!,
+        enabled: !widgetElement.disabled,
+        readOnly: widgetElement.readonly,
+        autofocus: widgetElement.autofocus,
         obscureText: widgetElement.type == 'password',
-        keyboardType: FlutterCupertinoInput._getKeyboardType(widgetElement.type!),
+        keyboardType: FlutterCupertinoInput._getKeyboardType(widgetElement.type ?? 'text'),
         textAlign: textAlign,
-        inputFormatters: widgetElement._getInputFormatters(widgetElement.type!),
+        inputFormatters: widgetElement._getInputFormatters(widgetElement.type ?? 'text'),
         onChanged: (value) {
           widgetElement.dispatchEvent(CustomEvent('input', detail: value));
         },
@@ -220,7 +219,7 @@ class FlutterCupertinoInputState extends WebFWidgetElementState {
         },
         prefix: prefixWidget,
         suffix: suffixWidget,
-        clearButtonMode: widgetElement.clearable! ? OverlayVisibilityMode.editing : OverlayVisibilityMode.never,
+        clearButtonMode: widgetElement.clearable ? OverlayVisibilityMode.editing : OverlayVisibilityMode.never,
         decoration: BoxDecoration(
           color: isDark ? CupertinoColors.systemGrey6.darkColor : CupertinoColors.white,
           borderRadius: hasBorderRadius

@@ -82,24 +82,11 @@ class FlutterCupertinoListTileState extends WebFWidgetElementState {
   }
   // --- End Slot Helper ---
 
-  // --- Event Handling --- 
-  bool _isTapped = false;
+  // --- Event Handling ---
 
   void _handleTap() {
-    setState(() {
-      _isTapped = true;
-    });
     // Dispatch standard 'click' event
     widgetElement.dispatchEvent(Event(EVENT_CLICK));
-    
-    // Simulate tap animation (reset after a short delay)
-    Future.delayed(const Duration(milliseconds: 150), () {
-      if (mounted) { // Check if the widget is still in the tree
-        setState(() {
-          _isTapped = false;
-        });
-      }
-    });
   }
   // --- End Event Handling ---
 

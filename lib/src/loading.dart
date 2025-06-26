@@ -112,7 +112,7 @@ class _LoadingWidget extends StatelessWidget {
             child: GestureDetector(
               onTap: onMaskTap,
               child: Container(
-                color: CupertinoColors.black.withOpacity(0.1),
+                color: CupertinoColors.black.withValues(alpha: 0.1),
               ),
             ),
           ),
@@ -124,7 +124,7 @@ class _LoadingWidget extends StatelessWidget {
                 vertical: 16,
               ),
               decoration: BoxDecoration(
-                color: CupertinoColors.black.withOpacity(0.8),
+                color: CupertinoColors.black.withValues(alpha: 0.8),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Column(

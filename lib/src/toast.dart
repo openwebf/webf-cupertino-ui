@@ -172,7 +172,7 @@ class _ToastWidget extends StatelessWidget {
                     vertical: 16,
                   ),
                   decoration: BoxDecoration(
-                    color: CupertinoColors.black.withOpacity(0.8),
+                    color: CupertinoColors.black.withValues(alpha: 0.8),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(

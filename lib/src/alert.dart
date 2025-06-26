@@ -3,7 +3,6 @@
  * Licensed under GNU AGPL with Enterprise exception.
  */
 import 'package:flutter/cupertino.dart';
-import 'package:path/path.dart';
 import 'package:webf/webf.dart';
 import 'dart:convert';
 import 'logger.dart';

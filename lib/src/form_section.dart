@@ -69,7 +69,7 @@ class FlutterCupertinoFormSectionState extends WebFWidgetElementState {
           return false; // Ignore non-element nodes
         })
         .map((node) => node.toWidget())
-        .whereNotNull() // Ensure toWidget didn't return null
+        .nonNulls // Ensure toWidget didn't return null
         .toList();
   }
 

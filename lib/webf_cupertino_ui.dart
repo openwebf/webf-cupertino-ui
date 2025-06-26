@@ -1,5 +1,3 @@
-library webf_cupertino_ui;
-
 export 'src/action_sheet.dart';
 export 'src/alert.dart';
 export 'src/button.dart';

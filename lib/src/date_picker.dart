@@ -92,7 +92,7 @@ class FlutterCupertinoDatePicker extends FlutterCupertinoDatePickerBindings {
   }
 
   @override
-  bool? get use24H => _use24H;
+  bool get use24H => _use24H;
   @override
   set use24H(value) {
     _use24H = value != 'false';
@@ -203,7 +203,7 @@ class FlutterCupertinoDatePickerState extends WebFWidgetElementState {
         onDateTimeChanged: (DateTime dateTime) {
           widgetElement.dispatchEvent(CustomEvent('change', detail: dateTime.toIso8601String()));
         },
-        use24hFormat: widgetElement.use24H!,
+        use24hFormat: widgetElement.use24H,
         minuteInterval: minuteInterval,
       ),
     );

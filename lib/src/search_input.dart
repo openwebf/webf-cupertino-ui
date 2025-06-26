@@ -3,7 +3,6 @@
  * Licensed under GNU AGPL with Enterprise exception.
  */
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:webf/webf.dart';
 import 'search_input_bindings_generated.dart';
 
@@ -37,7 +36,7 @@ class FlutterCupertinoSearchInput extends FlutterCupertinoSearchInputBindings {
   }
 
   @override
-  bool? get disabled => _disabled;
+  bool get disabled => _disabled;
   @override
   set disabled(value) {
     _disabled = value != 'false';
@@ -200,9 +199,9 @@ class FlutterCupertinoSearchInputState extends WebFWidgetElementState {
       controller: _controller,
       focusNode: _focusNode,
       placeholder: widgetElement.placeholder,
-      enabled: !widgetElement.disabled!,
-      keyboardType: widgetElement._getKeyboardType(widgetElement.type!),
-      autofocus: widgetElement.autofocus!,
+      enabled: !widgetElement.disabled,
+      keyboardType: widgetElement._getKeyboardType(widgetElement.type ?? 'text'),
+      autofocus: widgetElement.autofocus,
       onChanged: (value) {
         widgetElement.dispatchEvent(CustomEvent('input', detail: value));
       },

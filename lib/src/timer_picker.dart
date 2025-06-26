@@ -111,7 +111,7 @@ class FlutterCupertinoTimerPicker extends FlutterCupertinoTimerPickerBindings {
     if (colorString == null || colorString.isEmpty) return null;
     if (colorString.startsWith('#')) {
       String hex = colorString.substring(1);
-      if (hex.length == 6) hex = 'FF' + hex;
+      if (hex.length == 6) hex = 'FF$hex';
       if (hex.length == 8) {
         try {
           return Color(int.parse(hex, radix: 16));

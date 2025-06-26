@@ -49,7 +49,7 @@ class FlutterCupertinoSwitch extends FlutterCupertinoSwitchBindings {
     if (colorString.startsWith('#')) {
       String hex = colorString.replaceFirst('#', '');
       if (hex.length == 6) {
-        hex = 'FF' + hex;
+        hex = 'FF$hex';
       }
       return Color(int.parse(hex, radix: 16));
     }

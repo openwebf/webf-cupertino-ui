@@ -150,7 +150,7 @@ class FlutterTabBarState extends WebFWidgetElementState {
                 border: isDark
                     ? Border(
                         top: BorderSide(
-                            color: CupertinoDynamicColor.resolve(CupertinoColors.separator, context).withOpacity(0.3)))
+                            color: CupertinoDynamicColor.resolve(CupertinoColors.separator, context).withValues(alpha: 0.3)))
                     : null,
                 onTap: (index) {
                   widgetElement.setAttribute('currentIndex', index.toString());

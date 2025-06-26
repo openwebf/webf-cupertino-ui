@@ -65,7 +65,7 @@ class FlutterCupertinoListSectionState extends WebFWidgetElementState {
           return false; // Ignore non-element nodes for children list
         })
         .map((node) => node.toWidget())
-        .whereNotNull()
+        .nonNulls
         .toList();
   }
 

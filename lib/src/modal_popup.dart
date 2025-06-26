@@ -17,7 +17,7 @@ class FlutterCupertinoModalPopup extends FlutterCupertinoModalPopupBindings {
   NavigatorState? _navigator;
 
   @override
-  bool? get visible => _visible;
+  bool get visible => _visible;
   @override
   set visible(value) {
     final shouldShow = value == 'true';
@@ -35,14 +35,14 @@ class FlutterCupertinoModalPopup extends FlutterCupertinoModalPopupBindings {
   }
 
   @override
-  bool? get surfacePainted => _surfacePainted;
+  bool get surfacePainted => _surfacePainted;
   @override
   set surfacePainted(value) {
     _surfacePainted = value != 'false';
   }
 
   @override
-  bool? get maskClosable => _maskClosable;
+  bool get maskClosable => _maskClosable;
   @override
   set maskClosable(value) {
     _maskClosable = value != 'false';
@@ -94,14 +94,14 @@ class FlutterCupertinoModalPopupState extends WebFWidgetElementState {
 
     showCupertinoModalPopup(
       context: context,
-      barrierDismissible: widgetElement.maskClosable!,
-      barrierColor: CupertinoColors.black.withOpacity(widgetElement.backgroundOpacity!),
+      barrierDismissible: widgetElement.maskClosable,
+      barrierColor: CupertinoColors.black.withValues(alpha: widgetElement.backgroundOpacity ?? 0.4),
       builder: (BuildContext context) {
         widgetElement._navigator = Navigator.of(context);
         return Container(
           height: widgetElement.height?.toDouble() ?? 300,
           child: CupertinoPopupSurface(
-            isSurfacePainted: widgetElement.surfacePainted!,
+            isSurfacePainted: widgetElement.surfacePainted,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

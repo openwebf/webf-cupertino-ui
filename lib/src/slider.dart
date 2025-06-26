@@ -3,7 +3,6 @@
  * Licensed under GNU AGPL with Enterprise exception.
  */
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/rendering.dart';
 import 'package:webf/webf.dart';
 import 'slider_bindings_generated.dart';
 
@@ -59,7 +58,7 @@ class FlutterCupertinoSlider extends FlutterCupertinoSliderBindings {
   }
 
   @override
-  bool? get disabled => _disabled;
+  bool get disabled => _disabled;
   @override
   set disabled(value) {
     _disabled = value != 'false';

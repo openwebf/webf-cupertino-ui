@@ -83,7 +83,7 @@ class FlutterCupertinoButtonState extends WebFWidgetElementState {
     final hasPadding = renderStyle.padding != EdgeInsets.zero;
     final hasBorderRadius = renderStyle.borderRadius != null;
     final hasMinHeight = renderStyle.minHeight.computedValue != 0.0;
-    final textAlign = renderStyle.textAlign ?? TextAlign.center;
+    final textAlign = renderStyle.textAlign;
     final backgroundColor = _parseCSSColor(renderStyle.backgroundColor);
 
     // Determine the alignment based on textAlign

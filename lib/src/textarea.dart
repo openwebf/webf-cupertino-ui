@@ -10,7 +10,6 @@ import 'textarea_bindings_generated.dart';
 class FlutterCupertinoTextArea extends FlutterCupertinoTextareaBindings {
   FlutterCupertinoTextArea(super.context);
 
-  String _val = '';
   String _placeholder = '';
   bool _disabled = false;
   bool _readOnly = false;
@@ -37,14 +36,14 @@ class FlutterCupertinoTextArea extends FlutterCupertinoTextareaBindings {
   }
 
   @override
-  bool? get disabled => _disabled;
+  bool get disabled => _disabled;
   @override
   set disabled(value) {
     _disabled = value != 'false';
   }
 
   @override
-  bool? get readonly => _readOnly;
+  bool get readonly => _readOnly;
   @override
   set readonly(value) {
     _readOnly = value != 'false';
@@ -65,21 +64,21 @@ class FlutterCupertinoTextArea extends FlutterCupertinoTextareaBindings {
   }
 
   @override
-  bool? get showCount => _showCount;
+  bool get showCount => _showCount;
   @override
   set showCount(value) {
     _showCount = value != 'false';
   }
 
   @override
-  bool? get autoSize => _autoSize;
+  bool get autoSize => _autoSize;
   @override
   set autoSize(value) {
     _autoSize = value != 'false';
   }
 
   @override
-  bool? get transparent => _transparent;
+  bool get transparent => _transparent;
   @override
   set transparent(value) {
     _transparent = value != 'false';
@@ -126,7 +125,7 @@ class FlutterCupertinoTextAreaState extends WebFWidgetElementState {
   }
 
   void _handleTextChange() {
-    if (widgetElement.showCount! && widgetElement.maxLength != null) {
+    if (widgetElement.showCount && widgetElement.maxLength != null) {
       setState(() {});
     }
   }
@@ -146,9 +145,9 @@ class FlutterCupertinoTextAreaState extends WebFWidgetElementState {
     final isDark = theme.brightness == Brightness.dark;
 
     // Define colors based on theme
-    final backgroundColor = widgetElement.transparent!
+    final backgroundColor = widgetElement.transparent
         ? Colors.transparent
-        : widgetElement.disabled!
+        : widgetElement.disabled
         ? (isDark ? CupertinoColors.systemGrey6.darkColor : CupertinoColors.systemGrey6)
         : (isDark ? CupertinoColors.systemGrey6.darkColor : CupertinoColors.white);
 
@@ -160,12 +159,12 @@ class FlutterCupertinoTextAreaState extends WebFWidgetElementState {
         ? CupertinoColors.systemGrey.darkColor
         : CupertinoColors.systemGrey;
 
-    final bottomPadding = widgetElement.showCount! ? 12 : 0;
+    final bottomPadding = widgetElement.showCount ? 12 : 0;
 
     return ConstrainedBox(
       constraints: BoxConstraints(
         minHeight: 0,
-        maxHeight: widgetElement.autoSize! ? double.infinity : (widgetElement.rows! * 24.0 + 16 + bottomPadding),
+        maxHeight: widgetElement.autoSize ? double.infinity : ((widgetElement.rows ?? 2) * 24.0 + 16 + bottomPadding),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -174,12 +173,12 @@ class FlutterCupertinoTextAreaState extends WebFWidgetElementState {
           CupertinoTextField(
             controller: _controller,
             focusNode: _focusNode,
-            enabled: !widgetElement.disabled!,
-            readOnly: widgetElement.readonly!,
-            maxLines: widgetElement.autoSize! ? null : widgetElement.rows,
+            enabled: !widgetElement.disabled,
+            readOnly: widgetElement.readonly,
+            maxLines: widgetElement.autoSize ? null : widgetElement.rows,
             minLines: widgetElement.rows,
             maxLength: widgetElement.maxLength,
-            keyboardType: widgetElement.autoSize! ? TextInputType.multiline : TextInputType.text,
+            keyboardType: widgetElement.autoSize ? TextInputType.multiline : TextInputType.text,
             textAlign: widgetElement.renderStyle.textAlign,
             textAlignVertical: TextAlignVertical.top,
             style: TextStyle(
@@ -196,8 +195,8 @@ class FlutterCupertinoTextAreaState extends WebFWidgetElementState {
             ),
             decoration: BoxDecoration(
               color: backgroundColor,
-              borderRadius: widgetElement.transparent! ? null : BorderRadius.circular(8),
-              border: widgetElement.transparent! ? null : Border.all(
+              borderRadius: widgetElement.transparent ? null : BorderRadius.circular(8),
+              border: widgetElement.transparent ? null : Border.all(
                 color: isDark ? CupertinoColors.systemGrey.darkColor : CupertinoColors.systemGrey4,
                 width: 0.5,
               ),
@@ -210,7 +209,7 @@ class FlutterCupertinoTextAreaState extends WebFWidgetElementState {
               widgetElement.dispatchEvent(Event('complete'));
             },
           ),
-          if (widgetElement.showCount! && widgetElement.maxLength != null)
+          if (widgetElement.showCount && widgetElement.maxLength != null)
             Padding(
               padding: const EdgeInsets.only(top: 4, right: 12),
               child: Align(
