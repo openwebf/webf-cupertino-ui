@@ -22,20 +22,24 @@ abstract class FlutterCupertinoButtonBindings extends WidgetElement {
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['variant'] = ElementAttributeProperty(
-      getter: () => variant.toString(),
-      setter: (value) => variant = value
+      getter: () => variant?.toString(),
+      setter: (value) => variant = value,
+      deleter: () => variant = null
     );
     attributes['size'] = ElementAttributeProperty(
-      getter: () => size.toString(),
-      setter: (value) => size = value
+      getter: () => size?.toString(),
+      setter: (value) => size = value,
+      deleter: () => size = null
     );
     attributes['disabled'] = ElementAttributeProperty(
       getter: () => disabled.toString(),
-      setter: (value) => disabled = value == 'true' || value == ''
+      setter: (value) => disabled = value == 'true' || value == '',
+      deleter: () => disabled = false
     );
     attributes['pressed-opacity'] = ElementAttributeProperty(
-      getter: () => pressedOpacity.toString(),
-      setter: (value) => pressedOpacity = value
+      getter: () => pressedOpacity?.toString(),
+      setter: (value) => pressedOpacity = value,
+      deleter: () => pressedOpacity = null
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoButtonProperties = {

@@ -18,12 +18,14 @@ abstract class FlutterCupertinoPickerBindings extends WidgetElement {
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['height'] = ElementAttributeProperty(
-      getter: () => height.toString(),
-      setter: (value) => height = int.tryParse(value) ?? 0
+      getter: () => height?.toString(),
+      setter: (value) => height = int.tryParse(value) ?? 0,
+      deleter: () => height = 0
     );
     attributes['item-height'] = ElementAttributeProperty(
-      getter: () => itemHeight.toString(),
-      setter: (value) => itemHeight = int.tryParse(value) ?? 0
+      getter: () => itemHeight?.toString(),
+      setter: (value) => itemHeight = int.tryParse(value) ?? 0,
+      deleter: () => itemHeight = 0
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoPickerProperties = {

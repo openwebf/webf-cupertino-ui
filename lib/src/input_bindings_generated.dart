@@ -30,36 +30,44 @@ abstract class FlutterCupertinoInputBindings extends WidgetElement {
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['val'] = ElementAttributeProperty(
-      getter: () => val.toString(),
-      setter: (value) => val = value
+      getter: () => val?.toString(),
+      setter: (value) => val = value,
+      deleter: () => val = null
     );
     attributes['placeholder'] = ElementAttributeProperty(
-      getter: () => placeholder.toString(),
-      setter: (value) => placeholder = value
+      getter: () => placeholder?.toString(),
+      setter: (value) => placeholder = value,
+      deleter: () => placeholder = null
     );
     attributes['type'] = ElementAttributeProperty(
-      getter: () => type.toString(),
-      setter: (value) => type = value
+      getter: () => type?.toString(),
+      setter: (value) => type = value,
+      deleter: () => type = null
     );
     attributes['disabled'] = ElementAttributeProperty(
       getter: () => disabled.toString(),
-      setter: (value) => disabled = value == 'true' || value == ''
+      setter: (value) => disabled = value == 'true' || value == '',
+      deleter: () => disabled = false
     );
     attributes['autofocus'] = ElementAttributeProperty(
       getter: () => autofocus.toString(),
-      setter: (value) => autofocus = value == 'true' || value == ''
+      setter: (value) => autofocus = value == 'true' || value == '',
+      deleter: () => autofocus = false
     );
     attributes['clearable'] = ElementAttributeProperty(
       getter: () => clearable.toString(),
-      setter: (value) => clearable = value == 'true' || value == ''
+      setter: (value) => clearable = value == 'true' || value == '',
+      deleter: () => clearable = false
     );
     attributes['maxlength'] = ElementAttributeProperty(
-      getter: () => maxlength.toString(),
-      setter: (value) => maxlength = int.tryParse(value) ?? 0
+      getter: () => maxlength?.toString(),
+      setter: (value) => maxlength = int.tryParse(value) ?? 0,
+      deleter: () => maxlength = 0
     );
     attributes['readonly'] = ElementAttributeProperty(
       getter: () => readonly.toString(),
-      setter: (value) => readonly = value == 'true' || value == ''
+      setter: (value) => readonly = value == 'true' || value == '',
+      deleter: () => readonly = false
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoInputProperties = {

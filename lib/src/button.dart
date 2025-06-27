@@ -5,19 +5,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:webf/css.dart';
+import 'package:webf/rendering.dart';
 import 'package:webf/webf.dart';
 import 'button_bindings_generated.dart';
 
 class FlutterCupertinoButton extends FlutterCupertinoButtonBindings {
   FlutterCupertinoButton(super.context);
 
-  String _variant = 'plain';  // plain | filled | tinted
-  String _sizeStyle = 'small';   // small | large
+  String _variant = 'plain'; // plain | filled | tinted
+  String _sizeStyle = 'small'; // small | large
   bool _disabled = false;
   double _pressedOpacity = 0.4;
 
   @override
   String get variant => _variant;
+
   @override
   set variant(value) {
     _variant = value;
@@ -25,6 +27,7 @@ class FlutterCupertinoButton extends FlutterCupertinoButtonBindings {
 
   @override
   String get size => _sizeStyle;
+
   @override
   set size(value) {
     _sizeStyle = value;
@@ -32,13 +35,15 @@ class FlutterCupertinoButton extends FlutterCupertinoButtonBindings {
 
   @override
   bool get disabled => _disabled;
+
   @override
   set disabled(value) {
-    _disabled = value != 'false';
+    _disabled = value;
   }
 
   @override
   String get pressedOpacity => _pressedOpacity.toString();
+
   @override
   set pressedOpacity(value) {
     _pressedOpacity = double.tryParse(value) ?? 0.4;
@@ -115,39 +120,10 @@ class FlutterCupertinoButtonState extends WebFWidgetElementState {
       }
     }
 
-    // Get the text color
-    Color getTextColor() {
-      if (widgetElement._disabled) {
-        return isDark
-            ? CupertinoColors.systemGrey.darkColor
-            : CupertinoColors.systemGrey;
-      }
 
-      switch (widgetElement._variant) {
-        case 'filled':
-          return CupertinoColors.white;
-        case 'tinted':
-          return theme.primaryColor;
-        default:
-          return theme.primaryColor;
-      }
-    }
-
-    Widget buttonChild = Container(
-      width: hasWidth ? renderStyle.width.computedValue : null,
-      height: hasHeight ? renderStyle.height.computedValue : null,
-      alignment: alignment,
-      child: DefaultTextStyle(
-        style: TextStyle(
-          color: getTextColor(),
-          fontSize: widgetElement._sizeStyle == 'small' ? 14 : 16,
-          fontWeight: FontWeight.w500,
-        ),
-        child: widgetElement.childNodes.isEmpty
-            ? const SizedBox()
-            : widgetElement.childNodes.first.toWidget(),
-      ),
-    );
+    Widget buttonChild = WebFWidgetElementChild(child: widgetElement.childNodes.isEmpty
+        ? const SizedBox()
+        : widgetElement.childNodes.first.toWidget());
 
     Widget button;
     switch (widgetElement._variant) {
@@ -202,8 +178,6 @@ class FlutterCupertinoButtonState extends WebFWidgetElementState {
         );
     }
 
-    return UnconstrainedBox(
-      child: button,
-    );
+    return button;
   }
 }

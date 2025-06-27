@@ -23,19 +23,23 @@ abstract class FlutterCupertinoSwitchBindings extends WidgetElement {
     super.initializeAttributes(attributes);
     attributes['checked'] = ElementAttributeProperty(
       getter: () => checked.toString(),
-      setter: (value) => checked = value == 'true' || value == ''
+      setter: (value) => checked = value == 'true' || value == '',
+      deleter: () => checked = false
     );
     attributes['disabled'] = ElementAttributeProperty(
       getter: () => disabled.toString(),
-      setter: (value) => disabled = value == 'true' || value == ''
+      setter: (value) => disabled = value == 'true' || value == '',
+      deleter: () => disabled = false
     );
     attributes['active-color'] = ElementAttributeProperty(
-      getter: () => activeColor.toString(),
-      setter: (value) => activeColor = value
+      getter: () => activeColor?.toString(),
+      setter: (value) => activeColor = value,
+      deleter: () => activeColor = null
     );
     attributes['inactive-color'] = ElementAttributeProperty(
-      getter: () => inactiveColor.toString(),
-      setter: (value) => inactiveColor = value
+      getter: () => inactiveColor?.toString(),
+      setter: (value) => inactiveColor = value,
+      deleter: () => inactiveColor = null
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoSwitchProperties = {

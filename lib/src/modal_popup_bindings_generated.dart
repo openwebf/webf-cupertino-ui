@@ -25,23 +25,28 @@ abstract class FlutterCupertinoModalPopupBindings extends WidgetElement {
     super.initializeAttributes(attributes);
     attributes['visible'] = ElementAttributeProperty(
       getter: () => visible.toString(),
-      setter: (value) => visible = value == 'true' || value == ''
+      setter: (value) => visible = value == 'true' || value == '',
+      deleter: () => visible = false
     );
     attributes['height'] = ElementAttributeProperty(
-      getter: () => height.toString(),
-      setter: (value) => height = int.tryParse(value) ?? 0
+      getter: () => height?.toString(),
+      setter: (value) => height = int.tryParse(value) ?? 0,
+      deleter: () => height = 0
     );
     attributes['surface-painted'] = ElementAttributeProperty(
       getter: () => surfacePainted.toString(),
-      setter: (value) => surfacePainted = value == 'true' || value == ''
+      setter: (value) => surfacePainted = value == 'true' || value == '',
+      deleter: () => surfacePainted = false
     );
     attributes['mask-closable'] = ElementAttributeProperty(
       getter: () => maskClosable.toString(),
-      setter: (value) => maskClosable = value == 'true' || value == ''
+      setter: (value) => maskClosable = value == 'true' || value == '',
+      deleter: () => maskClosable = false
     );
     attributes['background-opacity'] = ElementAttributeProperty(
-      getter: () => backgroundOpacity.toString(),
-      setter: (value) => backgroundOpacity = double.tryParse(value) ?? 0.0
+      getter: () => backgroundOpacity?.toString(),
+      setter: (value) => backgroundOpacity = double.tryParse(value) ?? 0.0,
+      deleter: () => backgroundOpacity = 0.0
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoModalPopupProperties = {

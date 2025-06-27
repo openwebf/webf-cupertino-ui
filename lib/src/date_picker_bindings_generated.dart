@@ -36,48 +36,59 @@ abstract class FlutterCupertinoDatePickerBindings extends WidgetElement {
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['mode'] = ElementAttributeProperty(
-      getter: () => mode.toString(),
-      setter: (value) => mode = value
+      getter: () => mode?.toString(),
+      setter: (value) => mode = value,
+      deleter: () => mode = null
     );
     attributes['minimum-date'] = ElementAttributeProperty(
-      getter: () => minimumDate.toString(),
-      setter: (value) => minimumDate = value
+      getter: () => minimumDate?.toString(),
+      setter: (value) => minimumDate = value,
+      deleter: () => minimumDate = null
     );
     attributes['maximum-date'] = ElementAttributeProperty(
-      getter: () => maximumDate.toString(),
-      setter: (value) => maximumDate = value
+      getter: () => maximumDate?.toString(),
+      setter: (value) => maximumDate = value,
+      deleter: () => maximumDate = null
     );
     attributes['minute-interval'] = ElementAttributeProperty(
-      getter: () => minuteInterval.toString(),
-      setter: (value) => minuteInterval = value
+      getter: () => minuteInterval?.toString(),
+      setter: (value) => minuteInterval = value,
+      deleter: () => minuteInterval = null
     );
     attributes['value'] = ElementAttributeProperty(
-      getter: () => value.toString(),
-      setter: (value) => value = value
+      getter: () => value?.toString(),
+      setter: (value) => value = value,
+      deleter: () => value = null
     );
     attributes['minimum-year'] = ElementAttributeProperty(
-      getter: () => minimumYear.toString(),
-      setter: (value) => minimumYear = value
+      getter: () => minimumYear?.toString(),
+      setter: (value) => minimumYear = value,
+      deleter: () => minimumYear = null
     );
     attributes['maximum-year'] = ElementAttributeProperty(
-      getter: () => maximumYear.toString(),
-      setter: (value) => maximumYear = value
+      getter: () => maximumYear?.toString(),
+      setter: (value) => maximumYear = value,
+      deleter: () => maximumYear = null
     );
     attributes['show-day-of-week'] = ElementAttributeProperty(
-      getter: () => showDayOfWeek.toString(),
-      setter: (value) => showDayOfWeek = value
+      getter: () => showDayOfWeek?.toString(),
+      setter: (value) => showDayOfWeek = value,
+      deleter: () => showDayOfWeek = null
     );
     attributes['date-order'] = ElementAttributeProperty(
-      getter: () => dateOrder.toString(),
-      setter: (value) => dateOrder = value
+      getter: () => dateOrder?.toString(),
+      setter: (value) => dateOrder = value,
+      deleter: () => dateOrder = null
     );
     attributes['height'] = ElementAttributeProperty(
-      getter: () => height.toString(),
-      setter: (value) => height = value
+      getter: () => height?.toString(),
+      setter: (value) => height = value,
+      deleter: () => height = null
     );
     attributes['use-24-h'] = ElementAttributeProperty(
       getter: () => use24H.toString(),
-      setter: (value) => use24H = value == 'true' || value == ''
+      setter: (value) => use24H = value == 'true' || value == '',
+      deleter: () => use24H = false
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoDatePickerProperties = {

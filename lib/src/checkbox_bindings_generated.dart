@@ -28,32 +28,39 @@ abstract class FlutterCupertinoCheckboxBindings extends WidgetElement {
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['val'] = ElementAttributeProperty(
-      getter: () => val.toString(),
-      setter: (value) => val = value
+      getter: () => val?.toString(),
+      setter: (value) => val = value,
+      deleter: () => val = null
     );
     attributes['disabled'] = ElementAttributeProperty(
       getter: () => disabled.toString(),
-      setter: (value) => disabled = value == 'true' || value == ''
+      setter: (value) => disabled = value == 'true' || value == '',
+      deleter: () => disabled = false
     );
     attributes['active-color'] = ElementAttributeProperty(
-      getter: () => activeColor.toString(),
-      setter: (value) => activeColor = value
+      getter: () => activeColor?.toString(),
+      setter: (value) => activeColor = value,
+      deleter: () => activeColor = null
     );
     attributes['check-color'] = ElementAttributeProperty(
-      getter: () => checkColor.toString(),
-      setter: (value) => checkColor = value
+      getter: () => checkColor?.toString(),
+      setter: (value) => checkColor = value,
+      deleter: () => checkColor = null
     );
     attributes['focus-color'] = ElementAttributeProperty(
-      getter: () => focusColor.toString(),
-      setter: (value) => focusColor = value
+      getter: () => focusColor?.toString(),
+      setter: (value) => focusColor = value,
+      deleter: () => focusColor = null
     );
     attributes['fill-color-selected'] = ElementAttributeProperty(
-      getter: () => fillColorSelected.toString(),
-      setter: (value) => fillColorSelected = value
+      getter: () => fillColorSelected?.toString(),
+      setter: (value) => fillColorSelected = value,
+      deleter: () => fillColorSelected = null
     );
     attributes['fill-color-disabled'] = ElementAttributeProperty(
-      getter: () => fillColorDisabled.toString(),
-      setter: (value) => fillColorDisabled = value
+      getter: () => fillColorDisabled?.toString(),
+      setter: (value) => fillColorDisabled = value,
+      deleter: () => fillColorDisabled = null
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoCheckboxProperties = {

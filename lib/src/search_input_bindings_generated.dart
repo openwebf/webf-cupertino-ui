@@ -34,44 +34,54 @@ abstract class FlutterCupertinoSearchInputBindings extends WidgetElement {
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['val'] = ElementAttributeProperty(
-      getter: () => val.toString(),
-      setter: (value) => val = value
+      getter: () => val?.toString(),
+      setter: (value) => val = value,
+      deleter: () => val = null
     );
     attributes['placeholder'] = ElementAttributeProperty(
-      getter: () => placeholder.toString(),
-      setter: (value) => placeholder = value
+      getter: () => placeholder?.toString(),
+      setter: (value) => placeholder = value,
+      deleter: () => placeholder = null
     );
     attributes['disabled'] = ElementAttributeProperty(
       getter: () => disabled.toString(),
-      setter: (value) => disabled = value == 'true' || value == ''
+      setter: (value) => disabled = value == 'true' || value == '',
+      deleter: () => disabled = false
     );
     attributes['type'] = ElementAttributeProperty(
-      getter: () => type.toString(),
-      setter: (value) => type = value
+      getter: () => type?.toString(),
+      setter: (value) => type = value,
+      deleter: () => type = null
     );
     attributes['prefix-icon'] = ElementAttributeProperty(
-      getter: () => prefixIcon.toString(),
-      setter: (value) => prefixIcon = value
+      getter: () => prefixIcon?.toString(),
+      setter: (value) => prefixIcon = value,
+      deleter: () => prefixIcon = null
     );
     attributes['suffix-icon'] = ElementAttributeProperty(
-      getter: () => suffixIcon.toString(),
-      setter: (value) => suffixIcon = value
+      getter: () => suffixIcon?.toString(),
+      setter: (value) => suffixIcon = value,
+      deleter: () => suffixIcon = null
     );
     attributes['suffix-model'] = ElementAttributeProperty(
-      getter: () => suffixModel.toString(),
-      setter: (value) => suffixModel = value
+      getter: () => suffixModel?.toString(),
+      setter: (value) => suffixModel = value,
+      deleter: () => suffixModel = null
     );
     attributes['item-color'] = ElementAttributeProperty(
-      getter: () => itemColor.toString(),
-      setter: (value) => itemColor = value
+      getter: () => itemColor?.toString(),
+      setter: (value) => itemColor = value,
+      deleter: () => itemColor = null
     );
     attributes['item-size'] = ElementAttributeProperty(
-      getter: () => itemSize.toString(),
-      setter: (value) => itemSize = double.tryParse(value) ?? 0.0
+      getter: () => itemSize?.toString(),
+      setter: (value) => itemSize = double.tryParse(value) ?? 0.0,
+      deleter: () => itemSize = 0.0
     );
     attributes['autofocus'] = ElementAttributeProperty(
       getter: () => autofocus.toString(),
-      setter: (value) => autofocus = value == 'true' || value == ''
+      setter: (value) => autofocus = value == 'true' || value == '',
+      deleter: () => autofocus = false
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoSearchInputProperties = {

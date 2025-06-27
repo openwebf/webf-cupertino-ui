@@ -26,28 +26,34 @@ abstract class FlutterCupertinoTimerPickerBindings extends WidgetElement {
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['mode'] = ElementAttributeProperty(
-      getter: () => mode.toString(),
-      setter: (value) => mode = value
+      getter: () => mode?.toString(),
+      setter: (value) => mode = value,
+      deleter: () => mode = null
     );
     attributes['initial-timer-duration'] = ElementAttributeProperty(
-      getter: () => initialTimerDuration.toString(),
-      setter: (value) => initialTimerDuration = int.tryParse(value) ?? 0
+      getter: () => initialTimerDuration?.toString(),
+      setter: (value) => initialTimerDuration = int.tryParse(value) ?? 0,
+      deleter: () => initialTimerDuration = 0
     );
     attributes['minute-interval'] = ElementAttributeProperty(
-      getter: () => minuteInterval.toString(),
-      setter: (value) => minuteInterval = int.tryParse(value) ?? 0
+      getter: () => minuteInterval?.toString(),
+      setter: (value) => minuteInterval = int.tryParse(value) ?? 0,
+      deleter: () => minuteInterval = 0
     );
     attributes['second-interval'] = ElementAttributeProperty(
-      getter: () => secondInterval.toString(),
-      setter: (value) => secondInterval = int.tryParse(value) ?? 0
+      getter: () => secondInterval?.toString(),
+      setter: (value) => secondInterval = int.tryParse(value) ?? 0,
+      deleter: () => secondInterval = 0
     );
     attributes['background-color'] = ElementAttributeProperty(
-      getter: () => backgroundColor.toString(),
-      setter: (value) => backgroundColor = value
+      getter: () => backgroundColor?.toString(),
+      setter: (value) => backgroundColor = value,
+      deleter: () => backgroundColor = null
     );
     attributes['height'] = ElementAttributeProperty(
-      getter: () => height.toString(),
-      setter: (value) => height = double.tryParse(value) ?? 0.0
+      getter: () => height?.toString(),
+      setter: (value) => height = double.tryParse(value) ?? 0.0,
+      deleter: () => height = 0.0
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoTimerPickerProperties = {

@@ -18,12 +18,14 @@ abstract class FlutterCupertinoIconBindings extends WidgetElement {
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['type'] = ElementAttributeProperty(
-      getter: () => type.toString(),
-      setter: (value) => type = value
+      getter: () => type?.toString(),
+      setter: (value) => type = value,
+      deleter: () => type = null
     );
     attributes['label'] = ElementAttributeProperty(
-      getter: () => label.toString(),
-      setter: (value) => label = value
+      getter: () => label?.toString(),
+      setter: (value) => label = value,
+      deleter: () => label = null
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoIconProperties = {

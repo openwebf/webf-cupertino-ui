@@ -9,7 +9,6 @@ import 'package:webf/dom.dart' as dom;
 class FlutterCupertinoTab extends WidgetElement {
   FlutterCupertinoTab(super.context);
 
-
   // Define static method map
   static StaticDefinedSyncBindingObjectMethodMap tabSyncMethods = {
     'switchTab': StaticDefinedSyncBindingObjectMethod(

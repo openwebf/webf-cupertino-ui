@@ -4,6 +4,7 @@
  */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:webf/css.dart';
 import 'package:webf/webf.dart';
 import 'package:collection/collection.dart';
 import 'package:webf/dom.dart' as dom;
@@ -19,6 +20,9 @@ class FlutterCupertinoInput extends FlutterCupertinoInputBindings {
   bool _clearable = false;
   int? _maxLength;
   bool _readOnly = false;
+  
+  @override
+  bool get disableBoxModelPaint => true;
 
   @override
   String? get val => state?._controller.text;
@@ -152,9 +156,60 @@ class FlutterCupertinoInputState extends WebFWidgetElementState {
 
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
+  bool _isFocused = false;
 
   @override
   FlutterCupertinoInput get widgetElement => super.widgetElement as FlutterCupertinoInput;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(_handleFocusChange);
+  }
+
+  void _handleFocusChange() {
+    setState(() {
+      _isFocused = _focusNode.hasFocus;
+    });
+  }
+
+  Border? _getBorder(CSSRenderStyle renderStyle) {
+    // Check if any border is defined by checking if any border has non-zero width
+    final hasTopBorder = renderStyle.effectiveBorderTopWidth.computedValue > 0;
+    final hasRightBorder = renderStyle.effectiveBorderRightWidth.computedValue > 0;
+    final hasBottomBorder = renderStyle.effectiveBorderBottomWidth.computedValue > 0;
+    final hasLeftBorder = renderStyle.effectiveBorderLeftWidth.computedValue > 0;
+
+    if (hasTopBorder || hasRightBorder || hasBottomBorder || hasLeftBorder) {
+      // Get the border width (assuming uniform border)
+      final borderWidth = renderStyle.effectiveBorderTopWidth.computedValue;
+
+      if (_isFocused) {
+        // Use blue color when focused
+        return Border.all(
+          color: CupertinoColors.activeBlue,
+          width: borderWidth,
+        );
+      } else {
+        // Use the original border color when not focused
+        final borderColor = renderStyle.borderTopColor.value;
+        return Border.all(
+          color: borderColor,
+          width: borderWidth,
+        );
+      }
+    }
+
+    // Default border behavior if no border is defined
+    if (_isFocused) {
+      return Border.all(
+        color: CupertinoColors.activeBlue,
+        width: 1.0,
+      );
+    }
+
+    return null;
+  }
 
   Widget? _buildSlotWidget(String slotName) {
     final slotNode = widgetElement.childNodes.firstWhereOrNull((node) {
@@ -177,6 +232,7 @@ class FlutterCupertinoInputState extends WebFWidgetElementState {
 
   @override
   void dispose() {
+    _focusNode.removeListener(_handleFocusChange);
     _controller.dispose();
     _focusNode.dispose();
     super.dispose();
@@ -225,6 +281,7 @@ class FlutterCupertinoInputState extends WebFWidgetElementState {
           borderRadius: hasBorderRadius
               ? BorderRadius.circular(renderStyle.borderRadius!.first.x)
               : BorderRadius.circular(8),
+          border: _getBorder(renderStyle),
         ),
         style: TextStyle(
             color: isDark ? CupertinoColors.white : CupertinoColors.black,

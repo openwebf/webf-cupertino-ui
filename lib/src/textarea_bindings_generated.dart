@@ -32,40 +32,49 @@ abstract class FlutterCupertinoTextareaBindings extends WidgetElement {
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['val'] = ElementAttributeProperty(
-      getter: () => val.toString(),
-      setter: (value) => val = value
+      getter: () => val?.toString(),
+      setter: (value) => val = value,
+      deleter: () => val = null
     );
     attributes['placeholder'] = ElementAttributeProperty(
-      getter: () => placeholder.toString(),
-      setter: (value) => placeholder = value
+      getter: () => placeholder?.toString(),
+      setter: (value) => placeholder = value,
+      deleter: () => placeholder = null
     );
     attributes['disabled'] = ElementAttributeProperty(
       getter: () => disabled.toString(),
-      setter: (value) => disabled = value == 'true' || value == ''
+      setter: (value) => disabled = value == 'true' || value == '',
+      deleter: () => disabled = false
     );
     attributes['readonly'] = ElementAttributeProperty(
       getter: () => readonly.toString(),
-      setter: (value) => readonly = value == 'true' || value == ''
+      setter: (value) => readonly = value == 'true' || value == '',
+      deleter: () => readonly = false
     );
     attributes['max-length'] = ElementAttributeProperty(
-      getter: () => maxLength.toString(),
-      setter: (value) => maxLength = int.tryParse(value) ?? 0
+      getter: () => maxLength?.toString(),
+      setter: (value) => maxLength = int.tryParse(value) ?? 0,
+      deleter: () => maxLength = 0
     );
     attributes['rows'] = ElementAttributeProperty(
-      getter: () => rows.toString(),
-      setter: (value) => rows = int.tryParse(value) ?? 0
+      getter: () => rows?.toString(),
+      setter: (value) => rows = int.tryParse(value) ?? 0,
+      deleter: () => rows = 0
     );
     attributes['show-count'] = ElementAttributeProperty(
       getter: () => showCount.toString(),
-      setter: (value) => showCount = value == 'true' || value == ''
+      setter: (value) => showCount = value == 'true' || value == '',
+      deleter: () => showCount = false
     );
     attributes['auto-size'] = ElementAttributeProperty(
       getter: () => autoSize.toString(),
-      setter: (value) => autoSize = value == 'true' || value == ''
+      setter: (value) => autoSize = value == 'true' || value == '',
+      deleter: () => autoSize = false
     );
     attributes['transparent'] = ElementAttributeProperty(
       getter: () => transparent.toString(),
-      setter: (value) => transparent = value == 'true' || value == ''
+      setter: (value) => transparent = value == 'true' || value == '',
+      deleter: () => transparent = false
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoTextareaProperties = {

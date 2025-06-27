@@ -24,24 +24,29 @@ abstract class FlutterCupertinoSliderBindings extends WidgetElement {
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['val'] = ElementAttributeProperty(
-      getter: () => val.toString(),
-      setter: (value) => val = double.tryParse(value) ?? 0.0
+      getter: () => val?.toString(),
+      setter: (value) => val = double.tryParse(value) ?? 0.0,
+      deleter: () => val = 0.0
     );
     attributes['min'] = ElementAttributeProperty(
-      getter: () => min.toString(),
-      setter: (value) => min = double.tryParse(value) ?? 0.0
+      getter: () => min?.toString(),
+      setter: (value) => min = double.tryParse(value) ?? 0.0,
+      deleter: () => min = 0.0
     );
     attributes['max'] = ElementAttributeProperty(
-      getter: () => max.toString(),
-      setter: (value) => max = double.tryParse(value) ?? 0.0
+      getter: () => max?.toString(),
+      setter: (value) => max = double.tryParse(value) ?? 0.0,
+      deleter: () => max = 0.0
     );
     attributes['step'] = ElementAttributeProperty(
-      getter: () => step.toString(),
-      setter: (value) => step = int.tryParse(value) ?? 0
+      getter: () => step?.toString(),
+      setter: (value) => step = int.tryParse(value) ?? 0,
+      deleter: () => step = 0
     );
     attributes['disabled'] = ElementAttributeProperty(
       getter: () => disabled.toString(),
-      setter: (value) => disabled = value == 'true' || value == ''
+      setter: (value) => disabled = value == 'true' || value == '',
+      deleter: () => disabled = false
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoSliderProperties = {

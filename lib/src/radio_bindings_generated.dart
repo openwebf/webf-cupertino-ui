@@ -26,28 +26,34 @@ abstract class FlutterCupertinoRadioBindings extends WidgetElement {
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['val'] = ElementAttributeProperty(
-      getter: () => val.toString(),
-      setter: (value) => val = value
+      getter: () => val?.toString(),
+      setter: (value) => val = value,
+      deleter: () => val = null
     );
     attributes['group-value'] = ElementAttributeProperty(
-      getter: () => groupValue.toString(),
-      setter: (value) => groupValue = value
+      getter: () => groupValue?.toString(),
+      setter: (value) => groupValue = value,
+      deleter: () => groupValue = null
     );
     attributes['use-checkmark-style'] = ElementAttributeProperty(
       getter: () => useCheckmarkStyle.toString(),
-      setter: (value) => useCheckmarkStyle = value == 'true' || value == ''
+      setter: (value) => useCheckmarkStyle = value == 'true' || value == '',
+      deleter: () => useCheckmarkStyle = false
     );
     attributes['disabled'] = ElementAttributeProperty(
       getter: () => disabled.toString(),
-      setter: (value) => disabled = value == 'true' || value == ''
+      setter: (value) => disabled = value == 'true' || value == '',
+      deleter: () => disabled = false
     );
     attributes['active-color'] = ElementAttributeProperty(
-      getter: () => activeColor.toString(),
-      setter: (value) => activeColor = value
+      getter: () => activeColor?.toString(),
+      setter: (value) => activeColor = value,
+      deleter: () => activeColor = null
     );
     attributes['focus-color'] = ElementAttributeProperty(
-      getter: () => focusColor.toString(),
-      setter: (value) => focusColor = value
+      getter: () => focusColor?.toString(),
+      setter: (value) => focusColor = value,
+      deleter: () => focusColor = null
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoRadioProperties = {
