@@ -8,6 +8,9 @@ interface FlutterCupertinoTextareaProperties {
   showCount?: boolean;
   autoSize?: boolean;
   transparent?: boolean;
+}
+
+interface FlutterCupertinoTextareaMethods {
   focus(): void;
   blur(): void;
   clear(): void;

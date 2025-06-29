@@ -141,41 +141,4 @@ abstract class FlutterCupertinoSearchInputBindings extends WidgetElement {
     ...super.properties,
     flutterCupertinoSearchInputProperties,
   ];
-  String getValue(List<dynamic> args);
-  void setValue(List<dynamic> args);
-  void focus(List<dynamic> args);
-  void blur(List<dynamic> args);
-  void clear(List<dynamic> args);
-  static StaticDefinedSyncBindingObjectMethodMap flutterCupertinoSearchInputMethods = {
-    'getValue': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoSearchInputBindings>(element).getValue(args);
-      },
-    ),
-    'setValue': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoSearchInputBindings>(element).setValue(args);
-      },
-    ),
-    'focus': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoSearchInputBindings>(element).focus(args);
-      },
-    ),
-    'blur': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoSearchInputBindings>(element).blur(args);
-      },
-    ),
-    'clear': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoSearchInputBindings>(element).clear(args);
-      },
-    ),
-  };
-  @override
-  List<StaticDefinedSyncBindingObjectMethodMap> get methods => [
-    ...super.methods,
-    flutterCupertinoSearchInputMethods,
-  ];
 }

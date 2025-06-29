@@ -4,6 +4,9 @@ interface FlutterCupertinoSliderProperties {
   max?: double;
   step?: int;
   disabled?: boolean;
+}
+
+interface FlutterCupertinoSliderMethods {
   getValue(): double;
   setValue(val: double): void;
 }

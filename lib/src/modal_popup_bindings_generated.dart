@@ -81,23 +81,4 @@ abstract class FlutterCupertinoModalPopupBindings extends WidgetElement {
     ...super.properties,
     flutterCupertinoModalPopupProperties,
   ];
-  void show(List<dynamic> args);
-  void hide(List<dynamic> args);
-  static StaticDefinedSyncBindingObjectMethodMap flutterCupertinoModalPopupMethods = {
-    'show': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoModalPopupBindings>(element).show(args);
-      },
-    ),
-    'hide': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoModalPopupBindings>(element).hide(args);
-      },
-    ),
-  };
-  @override
-  List<StaticDefinedSyncBindingObjectMethodMap> get methods => [
-    ...super.methods,
-    flutterCupertinoModalPopupMethods,
-  ];
 }

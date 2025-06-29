@@ -81,23 +81,4 @@ abstract class FlutterCupertinoSliderBindings extends WidgetElement {
     ...super.properties,
     flutterCupertinoSliderProperties,
   ];
-  double getValue(List<dynamic> args);
-  void setValue(List<dynamic> args);
-  static StaticDefinedSyncBindingObjectMethodMap flutterCupertinoSliderMethods = {
-    'getValue': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoSliderBindings>(element).getValue(args);
-      },
-    ),
-    'setValue': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoSliderBindings>(element).setValue(args);
-      },
-    ),
-  };
-  @override
-  List<StaticDefinedSyncBindingObjectMethodMap> get methods => [
-    ...super.methods,
-    flutterCupertinoSliderMethods,
-  ];
 }

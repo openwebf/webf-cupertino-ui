@@ -129,29 +129,4 @@ abstract class FlutterCupertinoTextareaBindings extends WidgetElement {
     ...super.properties,
     flutterCupertinoTextareaProperties,
   ];
-  void focus(List<dynamic> args);
-  void blur(List<dynamic> args);
-  void clear(List<dynamic> args);
-  static StaticDefinedSyncBindingObjectMethodMap flutterCupertinoTextareaMethods = {
-    'focus': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoTextareaBindings>(element).focus(args);
-      },
-    ),
-    'blur': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoTextareaBindings>(element).blur(args);
-      },
-    ),
-    'clear': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoTextareaBindings>(element).clear(args);
-      },
-    ),
-  };
-  @override
-  List<StaticDefinedSyncBindingObjectMethodMap> get methods => [
-    ...super.methods,
-    flutterCupertinoTextareaMethods,
-  ];
 }

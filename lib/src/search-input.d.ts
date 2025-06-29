@@ -9,6 +9,9 @@ interface FlutterCupertinoSearchInputProperties {
   'item-color'?: string;
   'item-size'?: double;
   autofocus: boolean;
+}
+
+interface FlutterCupertinoSearchInputMethods {
   getValue(): string;
   setValue(value: string): void;
   focus(): void;

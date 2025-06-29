@@ -93,17 +93,4 @@ abstract class FlutterCupertinoTabBarBindings extends WidgetElement {
     ...super.properties,
     flutterCupertinoTabBarProperties,
   ];
-  void switchTab(List<dynamic> args);
-  static StaticDefinedSyncBindingObjectMethodMap flutterCupertinoTabBarMethods = {
-    'switchTab': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoTabBarBindings>(element).switchTab(args);
-      },
-    ),
-  };
-  @override
-  List<StaticDefinedSyncBindingObjectMethodMap> get methods => [
-    ...super.methods,
-    flutterCupertinoTabBarMethods,
-  ];
 }

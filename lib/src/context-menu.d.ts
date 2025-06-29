@@ -8,7 +8,9 @@ interface ContextMenuAction {
 
 interface FlutterCupertinoContextMenuProperties {
   'enable-haptic-feedback'?: boolean;
-  
+}
+
+interface FlutterCupertinoContextMenuMethods {
   // Methods
   setActions(actions: ContextMenuAction[]): void;
 }

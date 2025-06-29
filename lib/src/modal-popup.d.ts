@@ -4,6 +4,9 @@ interface FlutterCupertinoModalPopupProperties {
   surfacePainted?: boolean;
   maskClosable?: boolean;
   backgroundOpacity?: number;
+}
+
+interface FlutterCupertinoModelPopupMethods {
   show(): void;
   hide(): void;
 }

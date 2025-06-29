@@ -33,17 +33,4 @@ abstract class FlutterCupertinoContextMenuBindings extends WidgetElement {
     ...super.properties,
     flutterCupertinoContextMenuProperties,
   ];
-  void setActions(List<dynamic> args);
-  static StaticDefinedSyncBindingObjectMethodMap flutterCupertinoContextMenuMethods = {
-    'setActions': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoContextMenuBindings>(element).setActions(args);
-      },
-    ),
-  };
-  @override
-  List<StaticDefinedSyncBindingObjectMethodMap> get methods => [
-    ...super.methods,
-    flutterCupertinoContextMenuMethods,
-  ];
 }

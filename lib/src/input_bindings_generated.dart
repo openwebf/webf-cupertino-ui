@@ -117,35 +117,4 @@ abstract class FlutterCupertinoInputBindings extends WidgetElement {
     ...super.properties,
     flutterCupertinoInputProperties,
   ];
-  String getValue(List<dynamic> args);
-  void setValue(List<dynamic> args);
-  void focus(List<dynamic> args);
-  void blur(List<dynamic> args);
-  static StaticDefinedSyncBindingObjectMethodMap flutterCupertinoInputMethods = {
-    'getValue': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoInputBindings>(element).getValue(args);
-      },
-    ),
-    'setValue': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoInputBindings>(element).setValue(args);
-      },
-    ),
-    'focus': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoInputBindings>(element).focus(args);
-      },
-    ),
-    'blur': StaticDefinedSyncBindingObjectMethod(
-      call: (element, args) {
-        return castToType<FlutterCupertinoInputBindings>(element).blur(args);
-      },
-    ),
-  };
-  @override
-  List<StaticDefinedSyncBindingObjectMethodMap> get methods => [
-    ...super.methods,
-    flutterCupertinoInputMethods,
-  ];
 }

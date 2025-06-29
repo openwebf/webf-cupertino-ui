@@ -7,6 +7,9 @@ interface FlutterCupertinoInputProperties {
   clearable?: boolean;
   maxlength?: int;
   readonly?: boolean;
+}
+
+interface FlutterCupertinoInputMethods {
   getValue(): string;
   setValue(value: string): void;
   focus(): void;
