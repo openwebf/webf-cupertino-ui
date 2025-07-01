@@ -4,76 +4,70 @@
  */
 import 'package:flutter/cupertino.dart';
 import 'package:webf/webf.dart';
-import 'modal_popup_bindings_generated.dart';
 
-class FlutterCupertinoModalPopup extends FlutterCupertinoModalPopupBindings {
+class FlutterCupertinoModalPopup extends WidgetElement {
   FlutterCupertinoModalPopup(super.context);
 
-  bool _visible = false;
-  int? _height;
-  bool _surfacePainted = true;
-  bool _maskClosable = true;
-  double _backgroundOpacity = 0.4;
+  bool _isVisible = false;
   NavigatorState? _navigator;
-
-  @override
-  bool get visible => _visible;
-  @override
-  set visible(value) {
-    final shouldShow = value == 'true';
-    if (shouldShow != _visible) {
-      _visible = shouldShow;
-      _handleVisibilityChange();
-    }
-  }
-
-  @override
-  int? get height => _height;
-  @override
-  set height(value) {
-    _height = int.tryParse(value.toString());
-  }
-
-  @override
-  bool get surfacePainted => _surfacePainted;
-  @override
-  set surfacePainted(value) {
-    _surfacePainted = value != 'false';
-  }
-
-  @override
-  bool get maskClosable => _maskClosable;
-  @override
-  set maskClosable(value) {
-    _maskClosable = value != 'false';
-  }
-
-  @override
-  double? get backgroundOpacity => _backgroundOpacity;
-  @override
-  set backgroundOpacity(value) {
-    _backgroundOpacity = double.tryParse(value.toString()) ?? 0.4;
-  }
 
   @override
   FlutterCupertinoModalPopupState? get state => super.state as FlutterCupertinoModalPopupState?;
 
+  @override
+  void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
+    super.initializeAttributes(attributes);
+
+    attributes['show'] = ElementAttributeProperty(
+        getter: () => _isVisible.toString(),
+        setter: (value) {
+          final shouldShow = value == 'true';
+          if (shouldShow != _isVisible) {
+            _isVisible = shouldShow;
+            _handleVisibilityChange();
+          }
+        });
+
+    // 高度，默认 300
+    attributes['height'] = ElementAttributeProperty();
+
+    // 是否显示背景色，默认 true
+    attributes['surfacePainted'] = ElementAttributeProperty();
+
+    // 是否允许点击背景关闭，默认 true
+    attributes['maskClosable'] = ElementAttributeProperty();
+
+    // 背景颜色透明度，默认 0.4
+    attributes['backgroundOpacity'] = ElementAttributeProperty();
+  }
+
+  static StaticDefinedSyncBindingObjectMethodMap modalPopupSyncMethods = {
+    'show': StaticDefinedSyncBindingObjectMethod(
+      call: (element, args) {
+        final popup = castToType<FlutterCupertinoModalPopup>(element);
+        popup.setAttribute('show', 'true');
+      },
+    ),
+    'hide': StaticDefinedSyncBindingObjectMethod(
+      call: (element, args) {
+        final popup = castToType<FlutterCupertinoModalPopup>(element);
+        popup.setAttribute('show', 'false');
+      },
+    ),
+  };
+
+  @override
+  List<StaticDefinedSyncBindingObjectMethodMap> get methods => [
+        ...super.methods,
+        modalPopupSyncMethods,
+      ];
+
   void _handleVisibilityChange() {
-    if (_visible) {
+    if (_isVisible) {
       state?._showModal();
     } else {
       _navigator?.pop();
     }
-  }
-
-  @override
-  void show(List<dynamic> args) {
-    visible = 'true';
-  }
-
-  @override
-  void hide(List<dynamic> args) {
-    visible = 'false';
   }
 
   @override
@@ -94,14 +88,15 @@ class FlutterCupertinoModalPopupState extends WebFWidgetElementState {
 
     showCupertinoModalPopup(
       context: context,
-      barrierDismissible: widgetElement.maskClosable,
-      barrierColor: CupertinoColors.black.withValues(alpha: widgetElement.backgroundOpacity ?? 0.4),
+      barrierDismissible: widgetElement.attributes['maskClosable'] != 'false',
+      barrierColor: CupertinoColors.black
+          .withOpacity(double.tryParse(widgetElement.attributes['backgroundOpacity'] ?? '0.4') ?? 0.4),
       builder: (BuildContext context) {
         widgetElement._navigator = Navigator.of(context);
         return Container(
-          height: widgetElement.height?.toDouble() ?? 300,
+          height: double.tryParse(widgetElement.attributes['height'] ?? '300'),
           child: CupertinoPopupSurface(
-            isSurfacePainted: widgetElement.surfacePainted,
+            isSurfacePainted: widgetElement.attributes['surfacePainted'] != 'false',
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -115,9 +110,8 @@ class FlutterCupertinoModalPopupState extends WebFWidgetElementState {
                   ),
                 ),
                 Expanded(
-                  child: widgetElement.childNodes.isEmpty
-                      ? const SizedBox()
-                      : widgetElement.childNodes.first.toWidget(),
+                  child:
+                      widgetElement.childNodes.isEmpty ? const SizedBox() : widgetElement.childNodes.first.toWidget(),
                 ),
               ],
             ),
@@ -126,8 +120,8 @@ class FlutterCupertinoModalPopupState extends WebFWidgetElementState {
       },
     ).then((_) {
       setState(() {
-        widgetElement._visible = false;
-        widgetElement.visible = 'false';
+        widgetElement._isVisible = false;
+        widgetElement.setAttribute('show', 'false');
         widgetElement.dispatchEvent(CustomEvent('close'));
       });
     });

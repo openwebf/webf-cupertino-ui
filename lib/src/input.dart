@@ -20,7 +20,7 @@ class FlutterCupertinoInput extends FlutterCupertinoInputBindings {
   bool _clearable = false;
   int? _maxLength;
   bool _readOnly = false;
-  
+
   @override
   bool get disableBoxModelPaint => true;
 
@@ -58,7 +58,7 @@ class FlutterCupertinoInput extends FlutterCupertinoInputBindings {
   bool get autofocus => _autofocus;
   @override
   set autofocus(value) {
-    _autofocus = value != 'false';
+    _autofocus = value;
   }
 
   @override

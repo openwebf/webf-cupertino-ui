@@ -21,7 +21,7 @@ class FlutterCupertinoListTile extends WidgetElement {
       getter: () => _notched.toString(),
       setter: (value) {
         _notched = value == 'true';
-        state?.setState(() {}); 
+        state?.setState(() {});
       }
     );
     attributes['show-chevron'] = ElementAttributeProperty(
@@ -51,7 +51,7 @@ class FlutterCupertinoListTileState extends WebFWidgetElementState {
   @override
   FlutterCupertinoListTile get widgetElement => super.widgetElement as FlutterCupertinoListTile;
 
-  // --- Slot Helper --- 
+  // --- Slot Helper ---
   Widget? _getChildBySlotName(String name) {
     final slotNode = widgetElement.childNodes.firstWhereOrNull((node) {
       if (node is dom.Element) {

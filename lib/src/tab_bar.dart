@@ -44,7 +44,7 @@ class FlutterTabBar extends WidgetElement {
     'search': CupertinoIcons.search,
     'search_circle': CupertinoIcons.search_circle,
     'search_circle_fill': CupertinoIcons.search_circle_fill,
-    
+
     // Action icons
     'add': CupertinoIcons.add,
     'add_circled': CupertinoIcons.add_circled,
@@ -52,14 +52,14 @@ class FlutterTabBar extends WidgetElement {
     'plus': CupertinoIcons.plus,
     'plus_circle': CupertinoIcons.plus_circle,
     'plus_circle_fill': CupertinoIcons.plus_circle_fill,
-    
+
     // User/Account icons
     'person': CupertinoIcons.person,
     'person_fill': CupertinoIcons.person_fill,
     'person_circle': CupertinoIcons.person_circle,
     'person_circle_fill': CupertinoIcons.person_circle_fill,
     'profile_circled': CupertinoIcons.profile_circled,
-    
+
     // Communication icons
     'bell': CupertinoIcons.bell,
     'bell_fill': CupertinoIcons.bell_fill,
@@ -75,7 +75,7 @@ class FlutterTabBar extends WidgetElement {
     'envelope_fill': CupertinoIcons.envelope_fill,
     'phone': CupertinoIcons.phone,
     'phone_fill': CupertinoIcons.phone_fill,
-    
+
     // Navigation/Direction icons
     'compass': CupertinoIcons.compass,
     'compass_fill': CupertinoIcons.compass_fill,
@@ -83,7 +83,7 @@ class FlutterTabBar extends WidgetElement {
     'location_fill': CupertinoIcons.location_fill,
     'map': CupertinoIcons.map,
     'map_fill': CupertinoIcons.map_fill,
-    
+
     // Media icons
     'photo': CupertinoIcons.photo,
     'photo_fill': CupertinoIcons.photo_fill,
@@ -95,7 +95,7 @@ class FlutterTabBar extends WidgetElement {
     'play_fill': CupertinoIcons.play_fill,
     'play_circle': CupertinoIcons.play_circle,
     'play_circle_fill': CupertinoIcons.play_circle_fill,
-    
+
     // Settings/System icons
     'gear': CupertinoIcons.gear,
     'gear_solid': CupertinoIcons.gear_solid,
@@ -104,7 +104,7 @@ class FlutterTabBar extends WidgetElement {
     'ellipsis': CupertinoIcons.ellipsis,
     'ellipsis_circle': CupertinoIcons.ellipsis_circle,
     'ellipsis_circle_fill': CupertinoIcons.ellipsis_circle_fill,
-    
+
     // Business/Finance icons
     'creditcard': CupertinoIcons.creditcard,
     'creditcard_fill': CupertinoIcons.creditcard_fill,
@@ -112,7 +112,7 @@ class FlutterTabBar extends WidgetElement {
     'cart_fill': CupertinoIcons.cart_fill,
     'bag': CupertinoIcons.bag,
     'bag_fill': CupertinoIcons.bag_fill,
-    
+
     // Document/File icons
     'doc': CupertinoIcons.doc,
     'doc_fill': CupertinoIcons.doc_fill,
@@ -122,7 +122,7 @@ class FlutterTabBar extends WidgetElement {
     'folder_fill': CupertinoIcons.folder_fill,
     'book': CupertinoIcons.book,
     'book_fill': CupertinoIcons.book_fill,
-    
+
     // Social/Interaction icons
     'heart': CupertinoIcons.heart,
     'heart_fill': CupertinoIcons.heart_fill,
@@ -132,12 +132,12 @@ class FlutterTabBar extends WidgetElement {
     'hand_thumbsup_fill': CupertinoIcons.hand_thumbsup_fill,
     'bookmark': CupertinoIcons.bookmark,
     'bookmark_fill': CupertinoIcons.bookmark_fill,
-    
+
     // Currency icons (using money_dollar as bitcoin alternative)
     'money_dollar': CupertinoIcons.money_dollar,
     'money_dollar_circle': CupertinoIcons.money_dollar_circle,
     'money_dollar_circle_fill': CupertinoIcons.money_dollar_circle_fill,
-    
+
     // Utility icons
     'info': CupertinoIcons.info,
     'info_circle': CupertinoIcons.info_circle,
