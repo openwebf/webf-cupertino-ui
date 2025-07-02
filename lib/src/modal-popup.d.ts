@@ -6,7 +6,7 @@ interface FlutterCupertinoModalPopupProperties {
   backgroundOpacity?: number;
 }
 
-interface FlutterCupertinoModelPopupMethods {
+interface FlutterCupertinoModalPopupMethods {
   show(): void;
   hide(): void;
 }
