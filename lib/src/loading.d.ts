@@ -1,5 +1,5 @@
 interface FlutterCupertinoLoadingProperties {
-  maskClosable?: string;
+  maskClosable?: boolean;
 }
 
 interface FlutterCupertinoLoadingOptions {
