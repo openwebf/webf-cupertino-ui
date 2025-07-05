@@ -10,15 +10,15 @@
 import 'package:webf/webf.dart';
 abstract class FlutterCupertinoLoadingBindings extends WidgetElement {
   FlutterCupertinoLoadingBindings(super.context);
-  String? get maskClosable;
+  bool get maskClosable;
   set maskClosable(value);
   @override
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
     attributes['mask-closable'] = ElementAttributeProperty(
-      getter: () => maskClosable?.toString(),
-      setter: (value) => maskClosable = value,
-      deleter: () => maskClosable = null
+      getter: () => maskClosable.toString(),
+      setter: (value) => maskClosable = value == 'true' || value == '',
+      deleter: () => maskClosable = false
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoLoadingProperties = {
