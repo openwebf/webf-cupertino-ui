@@ -8,41 +8,41 @@
 // ignore_for_file: library_private_types_in_public_api
 // ignore_for_file: prefer_void_to_null
 import 'package:webf/webf.dart';
-abstract class FlutterCupertinoIconBindings extends WidgetElement {
-  FlutterCupertinoIconBindings(super.context);
-  String? get type;
-  set type(value);
+abstract class FlutterCupertinoPickerItemBindings extends WidgetElement {
+  FlutterCupertinoPickerItemBindings(super.context);
   String? get label;
   set label(value);
+  String? get val;
+  set val(value);
   @override
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
-    attributes['type'] = ElementAttributeProperty(
-      getter: () => type?.toString(),
-      setter: (value) => type = value,
-      deleter: () => type = null
-    );
     attributes['label'] = ElementAttributeProperty(
       getter: () => label?.toString(),
       setter: (value) => label = value,
       deleter: () => label = null
     );
+    attributes['val'] = ElementAttributeProperty(
+      getter: () => val?.toString(),
+      setter: (value) => val = value,
+      deleter: () => val = null
+    );
   }
-  static StaticDefinedBindingPropertyMap flutterCupertinoIconProperties = {
-    'type': StaticDefinedBindingProperty(
-      getter: (element) => castToType<FlutterCupertinoIconBindings>(element).type,
-      setter: (element, value) =>
-      castToType<FlutterCupertinoIconBindings>(element).type = value,
-    ),
+  static StaticDefinedBindingPropertyMap flutterCupertinoPickerItemProperties = {
     'label': StaticDefinedBindingProperty(
-      getter: (element) => castToType<FlutterCupertinoIconBindings>(element).label,
+      getter: (element) => castToType<FlutterCupertinoPickerItemBindings>(element).label,
       setter: (element, value) =>
-      castToType<FlutterCupertinoIconBindings>(element).label = value,
+      castToType<FlutterCupertinoPickerItemBindings>(element).label = value,
+    ),
+    'val': StaticDefinedBindingProperty(
+      getter: (element) => castToType<FlutterCupertinoPickerItemBindings>(element).val,
+      setter: (element, value) =>
+      castToType<FlutterCupertinoPickerItemBindings>(element).val = value,
     ),
   };
   @override
   List<StaticDefinedBindingPropertyMap> get properties => [
     ...super.properties,
-    flutterCupertinoIconProperties,
+    flutterCupertinoPickerItemProperties,
   ];
 }
