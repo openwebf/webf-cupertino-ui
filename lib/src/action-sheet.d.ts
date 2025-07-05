@@ -16,6 +16,14 @@ interface FlutterCupertinoActionSheetMethods {
   show(options: FlutterCupertinoActionSheetOptions): void;
 }
 
+interface FlutterCupertinoActionSheetSelectDetail {
+  text: string;
+  event: string;
+  isDefault: boolean;
+  isDestructive: boolean;
+  index?: number;
+}
+
 interface FlutterCupertinoActionSheetEvents {
-  [key: string]: CustomEvent;
+  select: CustomEvent<FlutterCupertinoActionSheetSelectDetail>;
 }
