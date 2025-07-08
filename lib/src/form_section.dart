@@ -5,6 +5,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:webf/dom.dart' as dom;
 import 'package:webf/webf.dart';
+import 'package:webf/rendering.dart';
 import 'package:collection/collection.dart'; // For firstWhereOrNull and whereNotNull
 
 // Element class: Handles attributes and creates state
@@ -49,22 +50,20 @@ class FlutterCupertinoFormSectionState extends WebFWidgetElementState {
   FlutterCupertinoFormSection get widgetElement => super.widgetElement as FlutterCupertinoFormSection;
 
   // Helper methods moved to State
-  Widget? _getChildBySlotName(String name) {
-    final slotNode = widgetElement.childNodes.firstWhereOrNull((node) {
-      if (node is dom.Element) {
-        return node.getAttribute('slotName') == name;
-      }
-      return false;
+  Widget? _getChildOfType<T>() {
+    final childNode = widgetElement.childNodes.firstWhereOrNull((node) {
+      return node is T;
     });
-    return slotNode?.toWidget();
+    return childNode?.toWidget();
   }
 
   List<Widget> _getChildrenWithoutSlots() {
     return widgetElement.childNodes
         .where((node) {
-          // Only include Element nodes that don't have a slotName attribute
           if (node is dom.Element) {
-            return node.getAttribute('slotName') == null;
+            // Skip specific child component types
+            return !(node is FlutterCupertinoFormSectionHeader ||
+                     node is FlutterCupertinoFormSectionFooter);
           }
           return false; // Ignore non-element nodes
         })
@@ -81,8 +80,8 @@ class FlutterCupertinoFormSectionState extends WebFWidgetElementState {
     BoxDecoration? decoration = widgetElement.renderStyle.decoration as BoxDecoration?;
     Clip clipBehavior = Clip.none; // Default
 
-    Widget? headerWidget = _getChildBySlotName('header');
-    Widget? footerWidget = _getChildBySlotName('footer');
+    Widget? headerWidget = _getChildOfType<FlutterCupertinoFormSectionHeader>();
+    Widget? footerWidget = _getChildOfType<FlutterCupertinoFormSectionFooter>();
     List<Widget> childrenWidgets = _getChildrenWithoutSlots();
 
     final bool useInsetGrouped = widgetElement.isInsetGrouped;
@@ -132,5 +131,52 @@ class FlutterCupertinoFormSectionState extends WebFWidgetElementState {
       mainAxisSize: MainAxisSize.min,
       children: [sectionWidget],
     );
+  }
+}
+
+// Sub-component classes for form section slots
+class FlutterCupertinoFormSectionHeader extends WidgetElement {
+  FlutterCupertinoFormSectionHeader(super.context);
+
+  @override
+  WebFWidgetElementState createState() {
+    return FlutterCupertinoFormSectionHeaderState(this);
+  }
+}
+
+class FlutterCupertinoFormSectionHeaderState extends WebFWidgetElementState {
+  FlutterCupertinoFormSectionHeaderState(super.widgetElement);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebFWidgetElementChild(
+        child: WebFHTMLElement(
+            tagName: 'DIV',
+            controller: widgetElement.ownerDocument.controller,
+            parentElement: widgetElement,
+            children: widgetElement.childNodes.toWidgetList()));
+  }
+}
+
+class FlutterCupertinoFormSectionFooter extends WidgetElement {
+  FlutterCupertinoFormSectionFooter(super.context);
+
+  @override
+  WebFWidgetElementState createState() {
+    return FlutterCupertinoFormSectionFooterState(this);
+  }
+}
+
+class FlutterCupertinoFormSectionFooterState extends WebFWidgetElementState {
+  FlutterCupertinoFormSectionFooterState(super.widgetElement);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebFWidgetElementChild(
+        child: WebFHTMLElement(
+            tagName: 'DIV',
+            controller: widgetElement.ownerDocument.controller,
+            parentElement: widgetElement,
+            children: widgetElement.childNodes.toWidgetList()));
   }
 }

@@ -5,6 +5,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:webf/dom.dart' as dom;
 import 'package:webf/webf.dart';
+import 'package:webf/rendering.dart';
 import 'package:collection/collection.dart';
 
 // Element class
@@ -52,21 +53,22 @@ class FlutterCupertinoListTileState extends WebFWidgetElementState {
   FlutterCupertinoListTile get widgetElement => super.widgetElement as FlutterCupertinoListTile;
 
   // --- Slot Helper ---
-  Widget? _getChildBySlotName(String name) {
-    final slotNode = widgetElement.childNodes.firstWhereOrNull((node) {
-      if (node is dom.Element) {
-        return node.getAttribute('slotName') == name;
-      }
-      return false;
+  Widget? _getChildOfType<T>() {
+    final childNode = widgetElement.childNodes.firstWhereOrNull((node) {
+      return node is T;
     });
-    return slotNode?.toWidget();
+    return childNode?.toWidget();
   }
 
-  // Title is the default slot (first element without slotName)
+  // Title is the default slot (first element without specific component type)
   Widget? _getDefaultChild() {
     final defaultSlotNode = widgetElement.childNodes.firstWhereOrNull((node) {
        if (node is dom.Element) {
-        return node.getAttribute('slotName') == null;
+        // Skip specific child component types
+        return !(node is FlutterCupertinoListTileLeading ||
+                 node is FlutterCupertinoListTileSubtitle ||
+                 node is FlutterCupertinoListTileAdditionalInfo ||
+                 node is FlutterCupertinoListTileTrailing);
       }
       // Allow simple text as title
       if (node is dom.TextNode && node.data.trim().isNotEmpty) {
@@ -92,11 +94,11 @@ class FlutterCupertinoListTileState extends WebFWidgetElementState {
 
   @override
   Widget build(BuildContext context) {
-    Widget? leadingWidget = _getChildBySlotName('leading');
+    Widget? leadingWidget = _getChildOfType<FlutterCupertinoListTileLeading>();
     Widget? titleWidget = _getDefaultChild(); // Required
-    Widget? subtitleWidget = _getChildBySlotName('subtitle');
-    Widget? additionalInfoWidget = _getChildBySlotName('additionalInfo');
-    Widget? trailingWidget = _getChildBySlotName('trailing');
+    Widget? subtitleWidget = _getChildOfType<FlutterCupertinoListTileSubtitle>();
+    Widget? additionalInfoWidget = _getChildOfType<FlutterCupertinoListTileAdditionalInfo>();
+    Widget? trailingWidget = _getChildOfType<FlutterCupertinoListTileTrailing>();
 
     // Default to showing chevron if attribute is set and no trailing slot is provided
     if (trailingWidget == null && widgetElement.shouldShowChevron) {
@@ -133,5 +135,98 @@ class FlutterCupertinoListTileState extends WebFWidgetElementState {
       children: [listTileWidget],
     );
     // *************************************************************
+  }
+}
+
+// Sub-component classes for list tile slots
+class FlutterCupertinoListTileLeading extends WidgetElement {
+  FlutterCupertinoListTileLeading(super.context);
+
+  @override
+  WebFWidgetElementState createState() {
+    return FlutterCupertinoListTileLeadingState(this);
+  }
+}
+
+class FlutterCupertinoListTileLeadingState extends WebFWidgetElementState {
+  FlutterCupertinoListTileLeadingState(super.widgetElement);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebFWidgetElementChild(
+        child: WebFHTMLElement(
+            tagName: 'DIV',
+            controller: widgetElement.ownerDocument.controller,
+            parentElement: widgetElement,
+            children: widgetElement.childNodes.toWidgetList()));
+  }
+}
+
+class FlutterCupertinoListTileSubtitle extends WidgetElement {
+  FlutterCupertinoListTileSubtitle(super.context);
+
+  @override
+  WebFWidgetElementState createState() {
+    return FlutterCupertinoListTileSubtitleState(this);
+  }
+}
+
+class FlutterCupertinoListTileSubtitleState extends WebFWidgetElementState {
+  FlutterCupertinoListTileSubtitleState(super.widgetElement);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebFWidgetElementChild(
+        child: WebFHTMLElement(
+            tagName: 'DIV',
+            controller: widgetElement.ownerDocument.controller,
+            parentElement: widgetElement,
+            children: widgetElement.childNodes.toWidgetList()));
+  }
+}
+
+class FlutterCupertinoListTileAdditionalInfo extends WidgetElement {
+  FlutterCupertinoListTileAdditionalInfo(super.context);
+
+  @override
+  WebFWidgetElementState createState() {
+    return FlutterCupertinoListTileAdditionalInfoState(this);
+  }
+}
+
+class FlutterCupertinoListTileAdditionalInfoState extends WebFWidgetElementState {
+  FlutterCupertinoListTileAdditionalInfoState(super.widgetElement);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebFWidgetElementChild(
+        child: WebFHTMLElement(
+            tagName: 'DIV',
+            controller: widgetElement.ownerDocument.controller,
+            parentElement: widgetElement,
+            children: widgetElement.childNodes.toWidgetList()));
+  }
+}
+
+class FlutterCupertinoListTileTrailing extends WidgetElement {
+  FlutterCupertinoListTileTrailing(super.context);
+
+  @override
+  WebFWidgetElementState createState() {
+    return FlutterCupertinoListTileTrailingState(this);
+  }
+}
+
+class FlutterCupertinoListTileTrailingState extends WebFWidgetElementState {
+  FlutterCupertinoListTileTrailingState(super.widgetElement);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebFWidgetElementChild(
+        child: WebFHTMLElement(
+            tagName: 'DIV',
+            controller: widgetElement.ownerDocument.controller,
+            parentElement: widgetElement,
+            children: widgetElement.childNodes.toWidgetList()));
   }
 }

@@ -93,7 +93,20 @@ void installWebFCupertinoUI() {
   WebF.defineCustomElement('flutter-cupertino-timer-picker', (context) => FlutterCupertinoTimerPicker(context));
   WebF.defineCustomElement('flutter-cupertino-action-sheet', (context) => FlutterCupertinoActionSheet(context));
   WebF.defineCustomElement('flutter-cupertino-form-row', (context) => FlutterCupertinoFormRow(context));
+  WebF.defineCustomElement('flutter-cupertino-form-row-prefix', (context) => FlutterCupertinoFormRowPrefix(context));
+  WebF.defineCustomElement('flutter-cupertino-form-row-helper', (context) => FlutterCupertinoFormRowHelper(context));
+  WebF.defineCustomElement('flutter-cupertino-form-row-error', (context) => FlutterCupertinoFormRowError(context));
   WebF.defineCustomElement('flutter-cupertino-form-section', (context) => FlutterCupertinoFormSection(context));
+  WebF.defineCustomElement('flutter-cupertino-form-section-header', (context) => FlutterCupertinoFormSectionHeader(context));
+  WebF.defineCustomElement('flutter-cupertino-form-section-footer', (context) => FlutterCupertinoFormSectionFooter(context));
+  WebF.defineCustomElement('flutter-cupertino-input-prefix', (context) => FlutterCupertinoInputPrefix(context));
+  WebF.defineCustomElement('flutter-cupertino-input-suffix', (context) => FlutterCupertinoInputSuffix(context));
   WebF.defineCustomElement('flutter-cupertino-list-section', (context) => FlutterCupertinoListSection(context));
+  WebF.defineCustomElement('flutter-cupertino-list-section-header', (context) => FlutterCupertinoListSectionHeader(context));
+  WebF.defineCustomElement('flutter-cupertino-list-section-footer', (context) => FlutterCupertinoListSectionFooter(context));
   WebF.defineCustomElement('flutter-cupertino-list-tile', (context) => FlutterCupertinoListTile(context));
+  WebF.defineCustomElement('flutter-cupertino-list-tile-leading', (context) => FlutterCupertinoListTileLeading(context));
+  WebF.defineCustomElement('flutter-cupertino-list-tile-subtitle', (context) => FlutterCupertinoListTileSubtitle(context));
+  WebF.defineCustomElement('flutter-cupertino-list-tile-additional-info', (context) => FlutterCupertinoListTileAdditionalInfo(context));
+  WebF.defineCustomElement('flutter-cupertino-list-tile-trailing', (context) => FlutterCupertinoListTileTrailing(context));
 }

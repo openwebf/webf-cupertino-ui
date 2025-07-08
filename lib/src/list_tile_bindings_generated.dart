@@ -10,18 +10,11 @@
 import 'package:webf/webf.dart';
 abstract class FlutterCupertinoListTileBindings extends WidgetElement {
   FlutterCupertinoListTileBindings(super.context);
-  String? get notched;
-  set notched(value);
   String? get showChevron;
   set showChevron(value);
   @override
   void initializeAttributes(Map<String, ElementAttributeProperty> attributes) {
     super.initializeAttributes(attributes);
-    attributes['notched'] = ElementAttributeProperty(
-      getter: () => notched?.toString(),
-      setter: (value) => notched = value,
-      deleter: () => notched = null
-    );
     attributes['show-chevron'] = ElementAttributeProperty(
       getter: () => showChevron?.toString(),
       setter: (value) => showChevron = value,
@@ -29,11 +22,6 @@ abstract class FlutterCupertinoListTileBindings extends WidgetElement {
     );
   }
   static StaticDefinedBindingPropertyMap flutterCupertinoListTileProperties = {
-    'notched': StaticDefinedBindingProperty(
-      getter: (element) => castToType<FlutterCupertinoListTileBindings>(element).notched,
-      setter: (element, value) =>
-      castToType<FlutterCupertinoListTileBindings>(element).notched = value,
-    ),
     'showChevron': StaticDefinedBindingProperty(
       getter: (element) => castToType<FlutterCupertinoListTileBindings>(element).showChevron,
       setter: (element, value) =>
