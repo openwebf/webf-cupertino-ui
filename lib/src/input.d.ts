@@ -20,9 +20,9 @@ interface FlutterCupertinoInputMethods {
 interface FlutterCupertinoInputEvents {
   input: CustomEvent<string>;
   submit: CustomEvent<string>;
-  onFocus?: (event: CustomEvent) => void;
-  onBlur?: (event: CustomEvent) => void;
-  onClear?: (event: CustomEvent) => void;
+  focus?: CustomEvent;
+  blur?: CustomEvent;
+  clear?: CustomEvent;
 }
 
 // Input sub-components

@@ -9,7 +9,7 @@ interface FlutterCupertinoListTileProperties {
 }
 
 interface FlutterCupertinoListTileEvents {
-  onClick?: (event: Event) => void;
+  click?: CustomEvent;
 }
 
 // ListTile sub-components
