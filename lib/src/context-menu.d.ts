@@ -15,8 +15,14 @@ interface FlutterCupertinoContextMenuMethods {
   setActions(actions: ContextMenuAction[]): void;
 }
 
+interface FlutterCupertinoContextMenuSelectDetail {
+  index: number;
+  text: string;
+  event: string;
+  destructive: boolean;
+  default: boolean;
+}
+
 interface FlutterCupertinoContextMenuEvents {
-  // Dynamic events based on action configuration
-  // Default event name is 'press' if not specified in action
-  [eventName: string]: Event;
+  select: CustomEvent<FlutterCupertinoContextMenuSelectDetail>;
 }

@@ -46,7 +46,7 @@ class FlutterCupertinoLoading extends WidgetElement {
     final overlay = Overlay.maybeOf(state!.context);
     if (overlay == null) return;
 
-    final bool maskClosable = attributes['maskClosable'] != null && attributes['maskClosable'] != 'false';
+    final bool maskClosable = attributes['mask-closable'] != null && attributes['mask-closable'] != 'false';
 
     _overlayEntry = OverlayEntry(
       builder: (context) => _LoadingWidget(

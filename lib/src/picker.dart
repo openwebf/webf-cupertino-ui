@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:webf/webf.dart';
 import 'package:webf/dom.dart' as dom;
 import 'picker_bindings_generated.dart';
+import 'picker_item.dart';
 
 class FlutterCupertinoPicker extends FlutterCupertinoPickerBindings {
   FlutterCupertinoPicker(super.context);
@@ -46,11 +47,26 @@ class FlutterCupertinoPickerState extends WebFWidgetElementState {
   Widget build(BuildContext context) {
     final items = <Widget>[];
 
-    for (var element in widgetElement.childNodes.whereType<dom.Element>()) {
+    final validChildren = widgetElement.childNodes.where((child) {
+      return (child is FlutterCupertinoPickerItem) || 
+             (child is dom.Element && (child.getAttribute('label')?.isNotEmpty ?? false));
+    }).toList();
+
+    for (var child in validChildren) {
+      String label = '';
+      
+      // Check if it's a FlutterCupertinoPickerItem first
+      if (child is FlutterCupertinoPickerItem) {
+        label = child.getAttribute('label') ?? '';
+      } else if (child is dom.Element) {
+        // Fallback to regular dom.Element for backward compatibility
+        label = child.getAttribute('label') ?? '';
+      }
+      
       items.add(
         Center(
           child: Text(
-            element.getAttribute('label') ?? '',
+            label,
             style: const TextStyle(fontSize: 16),
           ),
         ),
@@ -62,9 +78,23 @@ class FlutterCupertinoPickerState extends WebFWidgetElementState {
       child: CupertinoPicker(
         itemExtent: widgetElement.itemHeight?.toDouble() ?? 32,
         onSelectedItemChanged: (index) {
-          final selectedElement = widgetElement.childNodes.whereType<dom.Element>().elementAt(index);
-          final value = selectedElement.getAttribute('val') ?? selectedElement.getAttribute('label') ?? '';
-          widgetElement.dispatchEvent(CustomEvent('change', detail: value));
+          final validChildren = widgetElement.childNodes.where((child) {
+            return (child is FlutterCupertinoPickerItem) || 
+                   (child is dom.Element && (child.getAttribute('label')?.isNotEmpty ?? false));
+          }).toList();
+          
+          if (index < validChildren.length) {
+            final selectedChild = validChildren[index];
+            String value = '';
+            
+            if (selectedChild is FlutterCupertinoPickerItem) {
+              value = selectedChild.getAttribute('val') ?? selectedChild.getAttribute('label') ?? '';
+            } else if (selectedChild is dom.Element) {
+              value = selectedChild.getAttribute('val') ?? selectedChild.getAttribute('label') ?? '';
+            }
+            
+            widgetElement.dispatchEvent(CustomEvent('change', detail: value));
+          }
         },
         children: items,
       ),
