@@ -23,7 +23,7 @@ jobs:
       
       - name: Configure Cloudsmith
         run: |
-          dart pub token add https://dart.cloudsmith.io/openwebf/webf-enterprise/ --env-var CLOUDSMITH_API_KEY
+          dart pub token add https://dart.cloudsmith.io/openwebf/webf-enterprise/
         env:
           CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
       
@@ -54,7 +54,7 @@ jobs:
       
       - name: Configure Cloudsmith
         run: |
-          dart pub token add https://dart.cloudsmith.io/openwebf/webf-enterprise/ --env-var CLOUDSMITH_API_KEY
+          dart pub token add https://dart.cloudsmith.io/openwebf/webf-enterprise/
         env:
           CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
       
