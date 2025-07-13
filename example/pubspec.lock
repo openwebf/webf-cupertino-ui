@@ -211,6 +211,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.5.0"
+  logging:
+    dependency: transitive
+    description:
+      name: logging
+      sha256: c8245ada5f1717ed44271ed1c26b8ce85ca3228fd2ffdb75468ab01979309d61
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.0"
   matcher:
     dependency: transitive
     description:
@@ -275,6 +283,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.2"
+  shelf:
+    dependency: transitive
+    description:
+      name: shelf
+      sha256: e7dd780a7ffb623c57850b33f43309312fc863fb6aa3d276a754bb299839ef12
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.2"
+  shelf_web_socket:
+    dependency: transitive
+    description:
+      name: shelf_web_socket
+      sha256: cc36c297b52866d203dbf9332263c94becc2fe0ceaa9681d07b6ef9807023b67
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -404,10 +428,10 @@ packages:
     dependency: "direct main"
     description:
       name: webf
-      sha256: "9cbcff78f9ed9c4b41636d89582a99d7978d393cbe21a54a86311b6b7b5f3fd3"
+      sha256: "704fbcf8cc75e11bd7210e580dc5e230887f3b4bb2641b179afb4bd1fa50dc48"
       url: "https://dart.cloudsmith.io/openwebf/webf-enterprise/"
     source: hosted
-    version: "0.21.6"
+    version: "0.22.1"
   webf_cupertino_ui:
     dependency: "direct main"
     description:

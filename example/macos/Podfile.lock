@@ -1,6 +1,6 @@
 PODS:
   - FlutterMacOS (1.0.0)
-  - webf (0.1.0):
+  - webf (0.22.0):
     - FlutterMacOS
 
 DEPENDENCIES:
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
-  webf: eb8a9f6d750150857d706bfa5b9b5f49fdc919bc
+  webf: 7046bdadfee5b6e7bd64ee6e2764b5f2b77afd4c
 
 PODFILE CHECKSUM: 5633cb43239e9aa0858edeb72fb31829c266909d
 
