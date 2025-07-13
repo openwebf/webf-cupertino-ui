@@ -19,14 +19,17 @@ jobs:
         channel: 'stable'
     
     # Configure Cloudsmith for WebF Enterprise dependency
-    - name: Configure Cloudsmith for WebF Enterprise
+    - name: Configure Cloudsmith
       run: |
-        dart pub token add https://dart.cloudsmith.io/openwebf/webf-enterprise/
+        dart pub token add https://dart.cloudsmith.io/openwebf/webf-enterprise/ --env-var=CLOUDSMITH_API_KEY
       env:
         CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
     
     - name: Install dependencies
+      working-directory: example
       run: flutter pub get
+      env:
+        CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
     
     - name: Run tests
       run: flutter test
