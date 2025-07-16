@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:webf/rendering.dart';
 import 'package:webf/webf.dart';
 import 'package:webf/dom.dart' as dom;
+import 'package:webf/rendering.dart';
 
 class FlutterTabBar extends WidgetElement {
   FlutterTabBar(super.context);
@@ -181,7 +182,7 @@ class FlutterTabBar extends WidgetElement {
     final tabViews = <Widget>[];
     for (var child in childNodes) {
       if (child is! FlutterCupertinoTabBarItem) continue;
-      tabViews.add(child.toWidget());
+      tabViews.add(WebFWidgetElementChild(child: child.toWidget()));
     }
     return tabViews;
   }
@@ -307,6 +308,6 @@ class FlutterCupertinoTabBarItemState extends WebFWidgetElementState {
             tagName: 'DIV',
             controller: widgetElement.ownerDocument.controller,
             parentElement: widgetElement,
-            children: widgetElement.childNodes.toWidgetList()));
+            children: widgetElement.childNodes.map((node) => WebFWidgetElementChild(child: node.toWidget())).toList()));
   }
 }

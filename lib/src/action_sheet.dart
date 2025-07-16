@@ -113,7 +113,12 @@ class FlutterCupertinoActionSheetState extends WebFWidgetElementState {
           useRootNavigator: true,
           builder: (BuildContext dialogContext) {
             // Build actions *inside* the builder using the dialogContext
-            List<Widget> dialogActions = actionConfigs.map((cfg) => _buildAction(cfg, dialogContext)).toList();
+            List<Widget> dialogActions = [];
+            for (int i = 0; i < actionConfigs.length; i++) {
+              var cfg = Map<String, dynamic>.from(actionConfigs[i]);
+              cfg['index'] = i; // Add index to each action config
+              dialogActions.add(_buildAction(cfg, dialogContext));
+            }
             Widget? dialogCancelButton =
                 cancelActionConfig != null ? _buildAction(cancelActionConfig, dialogContext) : null;
 
@@ -136,10 +141,23 @@ class FlutterCupertinoActionSheetState extends WebFWidgetElementState {
     bool isDefault = actionConfig['isDefault'] == true;
     bool isDestructive = actionConfig['isDestructive'] == true;
     String eventName = actionConfig['event'] as String? ?? text.toLowerCase().replaceAll(' ', '_');
+    int? index = actionConfig['index'] as int?;
 
     return CupertinoActionSheetAction(
       onPressed: () {
-        widgetElement.dispatchEvent(CustomEvent(eventName, detail: text));
+        // Create a detail object with all relevant information
+        Map<String, dynamic> detail = {
+          'text': text,
+          'event': eventName,
+          'isDefault': isDefault,
+          'isDestructive': isDestructive,
+        };
+        if (index != null) {
+          detail['index'] = index;
+        }
+        
+        // Always dispatch 'select' event with detail containing the action info
+        widgetElement.dispatchEvent(CustomEvent('select', detail: detail));
         Navigator.pop(dialogContext); // Pop using the builder's context
       },
       isDefaultAction: isDefault,

@@ -4,6 +4,7 @@
  */
 import 'package:flutter/cupertino.dart';
 import 'package:webf/webf.dart';
+import 'package:webf/rendering.dart';
 import 'package:webf/dom.dart' as dom;
 import 'logger.dart';
 
@@ -130,7 +131,7 @@ class FlutterCupertinoContextMenuState extends WebFWidgetElementState {
       // Find the first node that is an Element
       if (child is dom.Element) {
         // Return the widget representation of this element
-        Widget? childWidget = child.toWidget();
+        Widget? childWidget = WebFWidgetElementChild(child: child.toWidget());
         if (childWidget != null) {
           // Wrap in a Container to ensure gestures are captured correctly,
           // especially if the child itself doesn't handle gestures well.
@@ -153,7 +154,8 @@ class FlutterCupertinoContextMenuState extends WebFWidgetElementState {
   List<Widget> _buildActions() {
     final builtActions = <Widget>[];
 
-    for (final action in widgetElement._actions) {
+    for (int i = 0; i < widgetElement._actions.length; i++) {
+      final action = widgetElement._actions[i];
       final isDestructive = action['destructive'] == true;
       final isDefault = action['default'] == true;
       final text = action['text'] as String? ?? '';
@@ -164,7 +166,17 @@ class FlutterCupertinoContextMenuState extends WebFWidgetElementState {
         isDestructiveAction: isDestructive,
         isDefaultAction: isDefault,
         onPressed: () {
-          widgetElement.dispatchEvent(CustomEvent(eventName)); // Dispatch event with the name from config
+          // Create a detail object with all relevant information
+          Map<String, dynamic> detail = {
+            'index': i,
+            'text': text,
+            'event': eventName,
+            'destructive': isDestructive,
+            'default': isDefault,
+          };
+          
+          // Always dispatch 'select' event with detail containing the action info
+          widgetElement.dispatchEvent(CustomEvent('select', detail: detail));
 
           // Attempt to close the menu
           try {

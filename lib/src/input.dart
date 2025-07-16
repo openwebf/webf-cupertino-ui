@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:webf/css.dart';
 import 'package:webf/webf.dart';
+import 'package:webf/rendering.dart';
 import 'package:collection/collection.dart';
 import 'package:webf/dom.dart' as dom;
 import 'input_bindings_generated.dart';
@@ -211,19 +212,16 @@ class FlutterCupertinoInputState extends WebFWidgetElementState {
     return null;
   }
 
-  Widget? _buildSlotWidget(String slotName) {
+  Widget? _buildSlotWidget<T>(String slotName) {
     final slotNode = widgetElement.childNodes.firstWhereOrNull((node) {
-      if (node is dom.Element) {
-        return node.getAttribute('slotName') == slotName;
-      }
-      return false;
+      return node is T;
     });
 
     if (slotNode != null) {
       return SizedBox(
         width: slotName == 'prefix' ? 60 : 100,
         child: Center(
-          child: slotNode.toWidget(),
+          child: WebFWidgetElementChild(child: slotNode.toWidget()),
         ),
       );
     }
@@ -251,8 +249,8 @@ class FlutterCupertinoInputState extends WebFWidgetElementState {
     final textAlign = renderStyle.textAlign;
 
     // Build prefix and suffix
-    final prefixWidget = _buildSlotWidget('prefix');
-    final suffixWidget = _buildSlotWidget('suffix');
+    final prefixWidget = _buildSlotWidget<FlutterCupertinoInputPrefix>('prefix');
+    final suffixWidget = _buildSlotWidget<FlutterCupertinoInputSuffix>('suffix');
 
     return SizedBox(
       height: hasHeight ? renderStyle.height.value : 44.0,
@@ -294,5 +292,52 @@ class FlutterCupertinoInputState extends WebFWidgetElementState {
         padding: hasPadding ? renderStyle.padding : const EdgeInsets.symmetric(horizontal: 10),
       ),
     );
+  }
+}
+
+// Sub-component classes for input slots
+class FlutterCupertinoInputPrefix extends WidgetElement {
+  FlutterCupertinoInputPrefix(super.context);
+
+  @override
+  WebFWidgetElementState createState() {
+    return FlutterCupertinoInputPrefixState(this);
+  }
+}
+
+class FlutterCupertinoInputPrefixState extends WebFWidgetElementState {
+  FlutterCupertinoInputPrefixState(super.widgetElement);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebFWidgetElementChild(
+        child: WebFHTMLElement(
+            tagName: 'DIV',
+            controller: widgetElement.ownerDocument.controller,
+            parentElement: widgetElement,
+            children: widgetElement.childNodes.toWidgetList()));
+  }
+}
+
+class FlutterCupertinoInputSuffix extends WidgetElement {
+  FlutterCupertinoInputSuffix(super.context);
+
+  @override
+  WebFWidgetElementState createState() {
+    return FlutterCupertinoInputSuffixState(this);
+  }
+}
+
+class FlutterCupertinoInputSuffixState extends WebFWidgetElementState {
+  FlutterCupertinoInputSuffixState(super.widgetElement);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebFWidgetElementChild(
+        child: WebFHTMLElement(
+            tagName: 'DIV',
+            controller: widgetElement.ownerDocument.controller,
+            parentElement: widgetElement,
+            children: widgetElement.childNodes.toWidgetList()));
   }
 }

@@ -5,6 +5,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:webf/dom.dart' as dom;
 import 'package:webf/webf.dart';
+import 'package:webf/rendering.dart';
 import 'package:collection/collection.dart'; // For firstWhereOrNull
 
 // Element class: Handles attributes and creates state
@@ -33,24 +34,24 @@ class FlutterCupertinoFormRowState extends WebFWidgetElementState {
   FlutterCupertinoFormRow get widgetElement => super.widgetElement as FlutterCupertinoFormRow;
 
   // Helper methods moved to State
-  Widget? _getChildBySlotName(String name) {
-    final slotNode = widgetElement.childNodes.firstWhereOrNull((node) {
-      if (node is dom.Element) {
-        return node.getAttribute('slotName') == name;
-      }
-      return false;
+  Widget? _getChildOfType<T>() {
+    final childNode = widgetElement.childNodes.firstWhereOrNull((node) {
+      return node is T;
     });
-    return slotNode?.toWidget();
+    return WebFWidgetElementChild(child: childNode?.toWidget());
   }
 
   Widget? _getDefaultChild() {
     final defaultSlotNode = widgetElement.childNodes.firstWhereOrNull((node) {
       if (node is dom.Element) {
-        return node.getAttribute('slotName') == null;
+        // Skip specific child component types
+        return !(node is FlutterCupertinoFormRowPrefix ||
+                 node is FlutterCupertinoFormRowHelper ||
+                 node is FlutterCupertinoFormRowError);
       }
       return false;
     });
-    return defaultSlotNode?.toWidget();
+    return WebFWidgetElementChild(child: defaultSlotNode?.toWidget());
   }
 
   @override
@@ -63,9 +64,9 @@ class FlutterCupertinoFormRowState extends WebFWidgetElementState {
       padding = null;
     }
 
-    Widget? prefixWidget = _getChildBySlotName('prefix');
-    Widget? helperWidget = _getChildBySlotName('helper');
-    Widget? errorWidget = _getChildBySlotName('error');
+    Widget? prefixWidget = _getChildOfType<FlutterCupertinoFormRowPrefix>();
+    Widget? helperWidget = _getChildOfType<FlutterCupertinoFormRowHelper>();
+    Widget? errorWidget = _getChildOfType<FlutterCupertinoFormRowError>();
     Widget childWidget = _getDefaultChild() ?? const SizedBox();
 
     // Build the core form row
@@ -85,5 +86,75 @@ class FlutterCupertinoFormRowState extends WebFWidgetElementState {
       children: [formRow],
     );
     // *************************************************************
+  }
+}
+
+// Sub-component classes for form row slots
+class FlutterCupertinoFormRowPrefix extends WidgetElement {
+  FlutterCupertinoFormRowPrefix(super.context);
+
+  @override
+  WebFWidgetElementState createState() {
+    return FlutterCupertinoFormRowPrefixState(this);
+  }
+}
+
+class FlutterCupertinoFormRowPrefixState extends WebFWidgetElementState {
+  FlutterCupertinoFormRowPrefixState(super.widgetElement);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebFWidgetElementChild(
+        child: WebFHTMLElement(
+            tagName: 'DIV',
+            controller: widgetElement.ownerDocument.controller,
+            parentElement: widgetElement,
+            children: widgetElement.childNodes.toWidgetList()));
+  }
+}
+
+class FlutterCupertinoFormRowHelper extends WidgetElement {
+  FlutterCupertinoFormRowHelper(super.context);
+
+  @override
+  WebFWidgetElementState createState() {
+    return FlutterCupertinoFormRowHelperState(this);
+  }
+}
+
+class FlutterCupertinoFormRowHelperState extends WebFWidgetElementState {
+  FlutterCupertinoFormRowHelperState(super.widgetElement);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebFWidgetElementChild(
+        child: WebFHTMLElement(
+            tagName: 'DIV',
+            controller: widgetElement.ownerDocument.controller,
+            parentElement: widgetElement,
+            children: widgetElement.childNodes.toWidgetList()));
+  }
+}
+
+class FlutterCupertinoFormRowError extends WidgetElement {
+  FlutterCupertinoFormRowError(super.context);
+
+  @override
+  WebFWidgetElementState createState() {
+    return FlutterCupertinoFormRowErrorState(this);
+  }
+}
+
+class FlutterCupertinoFormRowErrorState extends WebFWidgetElementState {
+  FlutterCupertinoFormRowErrorState(super.widgetElement);
+
+  @override
+  Widget build(BuildContext context) {
+    return WebFWidgetElementChild(
+        child: WebFHTMLElement(
+            tagName: 'DIV',
+            controller: widgetElement.ownerDocument.controller,
+            parentElement: widgetElement,
+            children: widgetElement.childNodes.toWidgetList()));
   }
 }

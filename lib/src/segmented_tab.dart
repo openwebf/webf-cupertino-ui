@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:webf/webf.dart';
 import 'package:webf/css.dart';
 import 'package:webf/dom.dart' as dom;
+import 'package:webf/rendering.dart';
 
 class FlutterCupertinoSegmentedTab extends WidgetElement {
   FlutterCupertinoSegmentedTab(super.context);
@@ -58,7 +59,7 @@ class FlutterCupertinoSegmentedTabState extends WebFWidgetElementState {
           textAlign: TextAlign.center,
         ),
       );
-      contents.add(element.toWidget(key: ObjectKey(element)));
+      contents.add(WebFWidgetElementChild(child: element.toWidget(key: ObjectKey(element))));
       index++;
     }
 
@@ -108,7 +109,7 @@ class FlutterCupertinoSegmentedTabItemState extends WebFWidgetElementState {
       tagName: 'DIV',
       parentElement: widgetElement,
       controller: widgetElement.ownerDocument.controller,
-      children: widgetElement.childNodes.toWidgetList(),
+      children: widgetElement.childNodes.map((node) => WebFWidgetElementChild(child: node.toWidget())).toList(),
     );
   }
 }

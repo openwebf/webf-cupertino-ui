@@ -5,6 +5,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:webf/webf.dart';
 import 'package:webf/dom.dart' as dom;
+import 'package:webf/rendering.dart';
 
 class FlutterCupertinoTab extends WidgetElement {
   FlutterCupertinoTab(super.context);
@@ -94,7 +95,7 @@ class FlutterCupertinoTabState extends WebFWidgetElementState {
         Expanded(
           child: items.isEmpty
               ? const SizedBox()
-              : items[_currentIndex].toWidget(),
+              : WebFWidgetElementChild(child: items[_currentIndex].toWidget()),
         ),
       ],
     );
@@ -125,7 +126,7 @@ class FlutterCupertinoTabItemState extends WebFWidgetElementState {
       tagName: 'DIV',
       parentElement: widgetElement,
       controller: widgetElement.ownerDocument.controller,
-      children: widgetElement.childNodes.toWidgetList(),
+      children: widgetElement.childNodes.map((node) => WebFWidgetElementChild(child: node.toWidget())).toList(),
     );
   }
 }
