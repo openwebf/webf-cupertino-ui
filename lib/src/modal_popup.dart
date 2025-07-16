@@ -4,6 +4,7 @@
  */
 import 'package:flutter/cupertino.dart';
 import 'package:webf/webf.dart';
+import 'package:webf/rendering.dart';
 
 class FlutterCupertinoModalPopup extends WidgetElement {
   FlutterCupertinoModalPopup(super.context);
@@ -32,13 +33,13 @@ class FlutterCupertinoModalPopup extends WidgetElement {
     attributes['height'] = ElementAttributeProperty();
 
     // 是否显示背景色，默认 true
-    attributes['surfacePainted'] = ElementAttributeProperty();
+    attributes['surface-painted'] = ElementAttributeProperty();
 
     // 是否允许点击背景关闭，默认 true
-    attributes['maskClosable'] = ElementAttributeProperty();
+    attributes['mask-closable'] = ElementAttributeProperty();
 
     // 背景颜色透明度，默认 0.4
-    attributes['backgroundOpacity'] = ElementAttributeProperty();
+    attributes['background-opacity'] = ElementAttributeProperty();
   }
 
   static StaticDefinedSyncBindingObjectMethodMap modalPopupSyncMethods = {
@@ -88,7 +89,7 @@ class FlutterCupertinoModalPopupState extends WebFWidgetElementState {
 
     showCupertinoModalPopup(
       context: context,
-      barrierDismissible: widgetElement.attributes['maskClosable'] != 'false',
+      barrierDismissible: widgetElement.attributes['mask-closable'] != 'false',
       barrierColor: CupertinoColors.black
           .withOpacity(double.tryParse(widgetElement.attributes['backgroundOpacity'] ?? '0.4') ?? 0.4),
       builder: (BuildContext context) {
@@ -111,7 +112,9 @@ class FlutterCupertinoModalPopupState extends WebFWidgetElementState {
                 ),
                 Expanded(
                   child:
-                      widgetElement.childNodes.isEmpty ? const SizedBox() : widgetElement.childNodes.first.toWidget(),
+                      widgetElement.childNodes.isEmpty
+                          ? const SizedBox()
+                          : WebFWidgetElementChild(child: widgetElement.childNodes.first.toWidget()),
                 ),
               ],
             ),

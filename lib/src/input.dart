@@ -221,7 +221,7 @@ class FlutterCupertinoInputState extends WebFWidgetElementState {
       return SizedBox(
         width: slotName == 'prefix' ? 60 : 100,
         child: Center(
-          child: slotNode.toWidget(),
+          child: WebFWidgetElementChild(child: slotNode.toWidget()),
         ),
       );
     }

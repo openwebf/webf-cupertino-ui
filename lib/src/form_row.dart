@@ -38,7 +38,7 @@ class FlutterCupertinoFormRowState extends WebFWidgetElementState {
     final childNode = widgetElement.childNodes.firstWhereOrNull((node) {
       return node is T;
     });
-    return childNode?.toWidget();
+    return WebFWidgetElementChild(child: childNode?.toWidget());
   }
 
   Widget? _getDefaultChild() {
@@ -51,7 +51,7 @@ class FlutterCupertinoFormRowState extends WebFWidgetElementState {
       }
       return false;
     });
-    return defaultSlotNode?.toWidget();
+    return WebFWidgetElementChild(child: defaultSlotNode?.toWidget());
   }
 
   @override

@@ -57,7 +57,7 @@ class FlutterCupertinoListTileState extends WebFWidgetElementState {
     final childNode = widgetElement.childNodes.firstWhereOrNull((node) {
       return node is T;
     });
-    return childNode?.toWidget();
+    return WebFWidgetElementChild(child: childNode?.toWidget());
   }
 
   // Title is the default slot (first element without specific component type)
@@ -80,7 +80,7 @@ class FlutterCupertinoListTileState extends WebFWidgetElementState {
      if (defaultSlotNode is dom.TextNode) {
        return Text(defaultSlotNode.data);
      }
-    return defaultSlotNode?.toWidget();
+    return WebFWidgetElementChild(child: defaultSlotNode?.toWidget());
   }
   // --- End Slot Helper ---
 

@@ -51,7 +51,7 @@ class FlutterCupertinoListSectionState extends WebFWidgetElementState {
     final childNode = widgetElement.childNodes.firstWhereOrNull((node) {
       return node is T;
     });
-    return childNode?.toWidget();
+    return WebFWidgetElementChild(child: childNode?.toWidget());
   }
 
   List<Widget> _getChildrenWithoutSlots() {
@@ -64,7 +64,7 @@ class FlutterCupertinoListSectionState extends WebFWidgetElementState {
           }
           return false; // Ignore non-element nodes for children list
         })
-        .map((node) => node.toWidget())
+        .map((node) => WebFWidgetElementChild(child: node.toWidget()))
         .nonNulls
         .toList();
   }

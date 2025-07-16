@@ -4,6 +4,7 @@
  */
 import 'package:flutter/cupertino.dart';
 import 'package:webf/webf.dart';
+import 'package:webf/rendering.dart';
 import 'package:webf/dom.dart' as dom;
 import 'logger.dart';
 
@@ -130,7 +131,7 @@ class FlutterCupertinoContextMenuState extends WebFWidgetElementState {
       // Find the first node that is an Element
       if (child is dom.Element) {
         // Return the widget representation of this element
-        Widget? childWidget = child.toWidget();
+        Widget? childWidget = WebFWidgetElementChild(child: child.toWidget());
         if (childWidget != null) {
           // Wrap in a Container to ensure gestures are captured correctly,
           // especially if the child itself doesn't handle gestures well.
